@@ -1,0 +1,82 @@
+<UserControl
+    x:Class="LaborCalc.Views.Step16Page"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:timeCalc="clr-namespace:TimeCalc"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+
+    <DockPanel>
+
+        <DataGrid
+            Margin="0,0,0,20"
+            VerticalAlignment="Stretch"
+            Classes="common"
+            DockPanel.Dock="Top"
+            Items="{Binding T_16_1.TableItems}">
+
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Width="*" Header="Наименование работы">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBox
+                                HorizontalAlignment="Stretch"
+                                Classes="read l"
+                                Text="{Binding Name}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Width="auto" Header="Единица измерения">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBox Classes="read" Text="{Binding Measure}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn
+                    Width="auto"
+                    Header="Норма"
+                    >
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBox Classes="read" Text="{Binding Norm}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Width="auto" Header="Количество">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <NumericUpDown Classes="count" Value="{Binding Quantity}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn
+                    Width="auto"
+                    Header="Трудоёмкость"
+                    >
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBox Classes="read" Text="{Binding Labor}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Button
+            HorizontalAlignment="Center"
+            VerticalAlignment="Bottom"
+            Classes="cancel"
+            Command="{Binding DeleteStepCommand}"
+            Content="Удалить этап"
+            DockPanel.Dock="Bottom" />
+
+    </DockPanel>
+</UserControl>

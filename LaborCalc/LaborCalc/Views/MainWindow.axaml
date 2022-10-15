@@ -1,0 +1,87 @@
+<Window
+    x:Class="LaborCalc.Views.MainWindow"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:LaborCalc.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModels="clr-namespace:LaborCalc.ViewModels"
+    xmlns:views="clr-namespace:LaborCalc.Views"
+    Title="{Binding StepsManager.ProjName, StringFormat='LaborCalc: {0}'}"
+    d:DesignHeight="480"
+    d:DesignWidth="420"
+    d:Height="1600"
+    d:Width="900"
+    Background="#1F1F1F"
+    Icon="/Assets/TimeCalcIcon.ico"
+    WindowStartupLocation="CenterScreen"
+    mc:Ignorable="d">
+
+    <!--
+        ExtendClientAreaChromeHints="PreferSystemChrome"
+        ExtendClientAreaTitleBarHeightHint="-1"
+        ExtendClientAreaToDecorationsHint="True"
+        SystemDecorations="Full"
+    -->
+
+    <DockPanel LastChildFill="True">
+
+        <!--  Menu  -->
+        <Menu
+            Width="150"
+            HorizontalAlignment="Left"
+            DockPanel.Dock="Top">
+            <MenuItem Header="Проект">
+                <MenuItem
+                    Command="{Binding NewCommand}"
+                    Header="Новый проект"
+                    InputGesture="CTRL + N" />
+                <MenuItem
+                    Command="{Binding OpenCommand}"
+                    Header="Открыть проект"
+                    InputGesture="CTRL + O" />
+                <Separator />
+                <MenuItem
+                    Command="{Binding PropertiesCommand}"
+                    Header="Свойства"
+                    InputGesture="CTRL + P" />
+                <Separator />
+                <MenuItem
+                    Command="{Binding SaveCommand}"
+                    Header="Сохранить"
+                    InputGesture="CTRL + S" />
+                <Separator />
+                <MenuItem
+                    Command="{Binding ExitCommand}"
+                    Header="Выход"
+                    InputGesture="Alt + F4" />
+            </MenuItem>
+            <MenuItem Header="Опции">
+                <MenuItem Header="Экспорт">
+                    <MenuItem Command="{Binding ExportToHtmlCommand}" Header="HTML" />
+                    <MenuItem Command="{Binding ExportToExcelCommand}" Header="Excel" />
+                </MenuItem>
+                <MenuItem
+                    Command="{Binding MailMeCommand}"
+                    Header="Помощь"
+                    InputGesture="Ctrl+H">
+                    <MenuItem.Icon>
+                        <Image Source="/Assets/TimeCalcIcon.ico" />
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+        </Menu>
+
+        <!--  Full Labor  -->
+        <TextBlock
+            Margin="8,8,8,8"
+            DockPanel.Dock="Bottom"
+            Text="{Binding StepsManager.FullLabor, StringFormat=Общая трудоёмкость: {0} н/ч}"
+            TextAlignment="Right" />
+
+        <!--  Content view  -->
+        <views:MainView />
+
+
+    </DockPanel>
+</Window>

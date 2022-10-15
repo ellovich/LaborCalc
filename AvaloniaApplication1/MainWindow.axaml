@@ -1,0 +1,37 @@
+<Window
+    x:Class="AvaloniaApplication1.MainWindow"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:ap="clr-namespace:AvaloniaApplication1"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:models="clr-namespace:AvaloniaApplication1"
+    Title="AvaloniaApplication1"
+    d:DesignHeight="450"
+    d:DesignWidth="500"
+    mc:Ignorable="d">
+
+	<Window.Styles>
+		
+	</Window.Styles>
+	
+    <Design.DataContext>
+        <ap:MainWindow />
+    </Design.DataContext>
+
+    <DockPanel>
+
+        <ComboBox
+            Classes="correction"
+            DockPanel.Dock="Top"
+            Items="{x:Static models:Person.ListOfGenders}"
+            SelectedItem="{Binding me.Gender}" />
+
+        <Button
+            Command="{Binding me.SaveAllCommand}"
+            Content="SAVE"
+            DockPanel.Dock="Bottom" />
+
+    </DockPanel>
+
+</Window>

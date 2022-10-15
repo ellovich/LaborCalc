@@ -1,0 +1,25 @@
+<UserControl
+    x:Class="LaborCalc.Views.MainView"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModels="clr-namespace:LaborCalc.ViewModels"
+    xmlns:views="clr-namespace:LaborCalc.Views"
+    d:DesignHeight="720"
+    d:DesignWidth="740"
+    mc:Ignorable="d">
+
+    <Design.DataContext>
+        <viewModels:MainViewModel />
+    </Design.DataContext>
+    <!--<UserControl.DataContext>
+        <viewModels:MainViewModel />
+    </UserControl.DataContext>-->
+
+    <views:HamburgerMenu
+        Name="TabControl"
+        Foreground="White"
+        Items="{Binding Tabs}" />
+
+</UserControl>

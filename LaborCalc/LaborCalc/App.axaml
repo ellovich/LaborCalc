@@ -1,0 +1,27 @@
+<Application
+    x:Class="LaborCalc.App"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:LaborCalc">
+
+    <Application.DataTemplates>
+        <local:ViewLocator />
+    </Application.DataTemplates>
+
+    <Application.Styles>
+        <FluentTheme Mode="Dark" />
+        <StyleInclude Source="/Styles/SideBar.xaml" />
+		<StyleInclude Source="/Styles/Styles.xaml" />
+		<StyleInclude Source="/Styles/Icons.xaml" />
+        <StyleInclude Source="avares://Avalonia.Controls.DataGrid/Themes/Fluent.xaml" />
+    </Application.Styles>
+
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceInclude Source="avares://LaborCalc/Controls/HamburgerMenu.axaml" />
+			</ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+
+</Application>

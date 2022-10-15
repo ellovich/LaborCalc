@@ -1,0 +1,70 @@
+<UserControl
+    x:Class="LaborCalc.Views.Step03_9Page"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:laborCalc="clr-namespace:LaborCalc"
+    xmlns:controls="clr-namespace:LaborCalc.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:models="clr-namespace:LaborCalc.Models"
+    xmlns:viewModels="clr-namespace:LaborCalc.ViewModels"
+    xmlns:views="clr-namespace:LaborCalc.Views"
+    d:DesignHeight="960"
+    d:DesignWidth="700"
+    mc:Ignorable="d">
+
+    <DockPanel>
+
+        <Grid
+            MaxWidth="1100"
+            ColumnDefinitions="50, 100*, 100*, auto"
+            DockPanel.Dock="Top"
+            RowDefinitions="auto, auto, auto, auto, auto, auto, auto, auto, auto">
+
+            <TextBlock
+                Grid.Row="0"
+                Grid.Column="0"
+                Margin="15"
+                Text="k" />
+            <TextBlock
+                Grid.Row="0"
+                Grid.Column="1"
+                Margin="15"
+                Text="Кол-во сутрудников, принимающих участие:" />
+            <NumericUpDown
+                Grid.Row="0"
+                Grid.Column="2"
+                VerticalAlignment="Center"
+                Classes="count"
+                Value="{Binding K}" />
+
+            <TextBlock
+                Grid.Row="1"
+                Grid.Column="0"
+                Margin="15"
+                Text="t" />
+            <TextBlock
+                Grid.Row="1"
+                Grid.Column="1"
+                Margin="15"
+                Text="Длительность отладки, н/ч:" />
+            <NumericUpDown
+                Grid.Row="1"
+                Grid.Column="2"
+                VerticalAlignment="Center"
+                Classes="count"
+                Value="{Binding T}" />
+
+        </Grid>
+
+
+        <Button
+            HorizontalAlignment="Center"
+            VerticalAlignment="Bottom"
+            Classes="cancel"
+            Command="{Binding DeleteStepCommand}"
+            Content="Удалить этап"
+            DockPanel.Dock="Bottom" />
+
+    </DockPanel>
+</UserControl>

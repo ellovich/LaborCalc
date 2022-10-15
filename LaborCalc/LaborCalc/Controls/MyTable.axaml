@@ -1,0 +1,80 @@
+<UserControl
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    x:Name="MyTable"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    DataContext="{Binding RelativeSource={RelativeSource Self}}"
+    mc:Ignorable="d">
+
+    <DataGrid
+        Name="Dg"
+        Margin="0,0,0,20"
+        HorizontalAlignment="Stretch"
+        AutoGenerateColumns="False"
+        CanUserReorderColumns="False"
+        CanUserResizeColumns="True"
+        CanUserSortColumns="False"
+        GridLinesVisibility="All"
+        HeadersVisibility="Column"
+        Items="{Binding ElementName=MyTable, Path=MyItems}">
+        <DataGrid.Columns>
+
+            <DataGridTemplateColumn Width="60" Header="N">
+                <DataGridTemplateColumn.CellTemplate>
+                    <DataTemplate>
+                        <TextBox Classes="read" Text="{Binding ID}" />
+                    </DataTemplate>
+                </DataGridTemplateColumn.CellTemplate>
+            </DataGridTemplateColumn>
+
+            <DataGridTemplateColumn Width="2*" Header="Наименование работы">
+                <DataGridTemplateColumn.CellTemplate>
+                    <DataTemplate>
+                        <TextBox
+                            HorizontalAlignment="Stretch"
+                            Classes="read l"
+                            Text="{Binding НаименованиеРаботы}" />
+                    </DataTemplate>
+                </DataGridTemplateColumn.CellTemplate>
+            </DataGridTemplateColumn>
+
+            <DataGridTemplateColumn Width="*" Header="Единица измерения">
+                <DataGridTemplateColumn.CellTemplate>
+                    <DataTemplate>
+                        <TextBox Classes="read" Text="{Binding ЕдиницаИзмерения}" />
+                    </DataTemplate>
+                </DataGridTemplateColumn.CellTemplate>
+            </DataGridTemplateColumn>
+
+            <DataGridTemplateColumn Width="auto" Header="Объем работы">
+                <DataGridTemplateColumn.CellTemplate>
+                    <DataTemplate>
+                        <NumericUpDown
+                            HorizontalAlignment="Stretch"
+                            HorizontalContentAlignment="Center"
+                            VerticalContentAlignment="Center"
+                            FormatString="N0"
+                            Maximum="Infinity"
+                            Minimum="0"
+                            Value="{Binding Количество}" />
+                    </DataTemplate>
+                </DataGridTemplateColumn.CellTemplate>
+            </DataGridTemplateColumn>
+
+            <DataGridTemplateColumn Width="auto" Header="Степень коррекции">
+                <DataGridTemplateColumn.CellTemplate>
+                    <DataTemplate>
+                        <ComboBox
+                            x:Name="combo"
+                            HorizontalAlignment="Stretch"
+                            Items="{Binding СтепеньКоррекции}" />
+                    </DataTemplate>
+                </DataGridTemplateColumn.CellTemplate>
+            </DataGridTemplateColumn>
+        </DataGrid.Columns>
+    </DataGrid>
+
+</UserControl>

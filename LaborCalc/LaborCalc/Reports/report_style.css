@@ -1,0 +1,44 @@
+﻿body {
+    width: 55%;
+    line-height: 1.25;
+    font-family: sans-serif, Times, 'Courier New', Courier, monospace;
+    margin: 0 auto;
+}
+
+
+/* TABLE */
+
+table {
+    border: 1px solid #eee;
+    border-collapse: collapse;
+    table-layout: fixed;
+    width: 100%;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+    table th {
+        font-weight: bold;
+        padding: 5px;
+        background: #efefef;
+        border: thin solid #dddddd;
+    }
+
+    table td {
+        padding: 5px;
+        border: thin solid #eee;
+        text-align: left;
+    }
+
+    table tbody tr:nth-child(odd) {
+        background: #fff;
+    }
+
+    table tbody tr:nth-child(even) {
+        background: #F7F7F7;
+    }
+
+    table tbody tr:hover {
+        background-color: lightyellow;
+    }
