@@ -11,8 +11,8 @@
     <Application.Styles>
         <FluentTheme Mode="Dark" />
         <StyleInclude Source="/Styles/SideBar.xaml" />
-		<StyleInclude Source="/Styles/Styles.xaml" />
-		<StyleInclude Source="/Styles/Icons.xaml" />
+        <StyleInclude Source="/Styles/Styles.xaml" />
+        <StyleInclude Source="/Styles/Icons.xaml" />
         <StyleInclude Source="avares://Avalonia.Controls.DataGrid/Themes/Fluent.xaml" />
     </Application.Styles>
 
@@ -20,7 +20,7 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceInclude Source="avares://LaborCalc/Controls/HamburgerMenu.axaml" />
-			</ResourceDictionary.MergedDictionaries>
+            </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
 

@@ -2,9 +2,10 @@
     x:Class="LaborCalc.Views.Step03_2Page"
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:laborCalc="clr-namespace:LaborCalc"
     xmlns:controls="clr-namespace:LaborCalc.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:helpers="using:LaborCalc.Helpers"
+    xmlns:laborCalc="clr-namespace:LaborCalc"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:models="clr-namespace:LaborCalc.Models"
     xmlns:viewModels="clr-namespace:LaborCalc.ViewModels"
@@ -12,6 +13,10 @@
     d:DesignHeight="960"
     d:DesignWidth="700"
     mc:Ignorable="d">
+
+    <UserControl.Resources>
+        <helpers:DoubleOutputConverter x:Key="DoubleOut" />
+    </UserControl.Resources>
 
     <UserControl.Styles>
         <Style Selector="Border.step03style">
@@ -103,7 +108,7 @@
                                 Grid.Row="0"
                                 Grid.Column="2"
                                 Classes="labor">
-                                <TextBlock Classes="labor" Text="{Binding _t1, FallbackValue='', StringFormat='{}{0} н/ч'}" />
+                                <TextBlock Classes="labor" Text="{Binding _t1, FallbackValue='', Converter={StaticResource DoubleOut}, StringFormat='{}{0} н/ч'}" />
                             </Border>
 
                             <StackPanel
@@ -215,7 +220,7 @@
                                 Grid.Row="0"
                                 Grid.Column="2"
                                 Classes="labor">
-                                <TextBlock Classes="labor" Text="{Binding _t2, FallbackValue='', StringFormat='{}{0} н/ч'}" />
+                                <TextBlock Classes="labor" Text="{Binding _t2, FallbackValue='', Converter={StaticResource DoubleOut}, StringFormat='{}{0} н/ч'}" />
                             </Border>
 
                             <!--<TextBlock Grid.Column="0" Grid.Row="2" Margin="10" TextWrapping="Wrap" Text="k_2"/>
@@ -311,7 +316,7 @@
                                 Grid.Row="0"
                                 Grid.Column="2"
                                 Classes="labor">
-                                <TextBlock Classes="labor" Text="{Binding _t3, FallbackValue='', StringFormat='{}{0} н/ч'}" />
+                                <TextBlock Classes="labor" Text="{Binding _t3, FallbackValue='', Converter={StaticResource DoubleOut}, StringFormat='{}{0} н/ч'}" />
                             </Border>
 
                             <StackPanel
@@ -401,7 +406,7 @@
                                 Grid.Row="0"
                                 Grid.Column="2"
                                 Classes="labor">
-                                <TextBlock Classes="labor" Text="{Binding _t4, FallbackValue='', StringFormat='{}{0} н/ч'}" />
+                                <TextBlock Classes="labor" Text="{Binding _t4, FallbackValue='', Converter={StaticResource DoubleOut}, StringFormat='{}{0} н/ч'}" />
                             </Border>
 
                             <StackPanel
@@ -462,7 +467,7 @@
                                 Grid.Row="0"
                                 Grid.Column="2"
                                 Classes="labor">
-                                <TextBlock Classes="labor" Text="{Binding _t5, FallbackValue='', StringFormat='{}{0} н/ч'}" />
+                                <TextBlock Classes="labor" Text="{Binding _t5, FallbackValue='', Converter={StaticResource DoubleOut}, StringFormat='{}{0} н/ч'}" />
                             </Border>
 
                             <StackPanel
@@ -523,7 +528,7 @@
                                 Grid.Row="0"
                                 Grid.Column="2"
                                 Classes="labor">
-                                <TextBlock Classes="labor" Text="{Binding _t6, FallbackValue='', StringFormat='{}{0} н/ч'}" />
+                                <TextBlock Classes="labor" Text="{Binding _t6, FallbackValue='', Converter={StaticResource DoubleOut}, StringFormat='{}{0} н/ч'}" />
                             </Border>
 
                             <StackPanel
@@ -584,7 +589,7 @@
                                 Grid.Row="0"
                                 Grid.Column="2"
                                 Classes="labor">
-                                <TextBlock Classes="labor" Text="{Binding _t7, FallbackValue='', StringFormat='{}{0} н/ч'}" />
+                                <TextBlock Classes="labor" Text="{Binding _t7, FallbackValue='', Converter={StaticResource DoubleOut}, StringFormat='{}{0} н/ч'}" />
                             </Border>
 
                             <StackPanel
@@ -687,7 +692,7 @@
                                 Grid.Row="0"
                                 Grid.Column="2"
                                 Classes="labor">
-                                <TextBlock Classes="labor" Text="{Binding _t8, FallbackValue='', StringFormat='{}{0} н/ч'}" />
+                                <TextBlock Classes="labor" Text="{Binding _t8, FallbackValue='', Converter={StaticResource DoubleOut}, StringFormat='{}{0} н/ч'}" />
                             </Border>
 
                             <StackPanel
@@ -799,7 +804,7 @@
                                 Grid.Row="0"
                                 Grid.Column="2"
                                 Classes="labor">
-                                <TextBlock Classes="labor" Text="{Binding _t9, FallbackValue='', StringFormat='{}{0} н/ч'}" />
+                                <TextBlock Classes="labor" Text="{Binding _t9, FallbackValue='', Converter={StaticResource DoubleOut}, StringFormat='{}{0} н/ч'}" />
                             </Border>
 
                             <StackPanel
@@ -860,7 +865,7 @@
                                 Grid.Row="0"
                                 Grid.Column="2"
                                 Classes="labor">
-                                <TextBlock Classes="labor" Text="{Binding _t10, FallbackValue='', StringFormat='{}{0} н/ч'}" />
+                                <TextBlock Classes="labor" Text="{Binding _t10, FallbackValue='', Converter={StaticResource DoubleOut}, StringFormat='{}{0} н/ч'}" />
                             </Border>
 
                             <StackPanel
@@ -970,7 +975,7 @@
                                 Grid.Row="0"
                                 Grid.Column="2"
                                 Classes="labor">
-                                <TextBlock Classes="labor" Text="{Binding _t11, FallbackValue='', StringFormat='{}{0} н/ч'}" />
+                                <TextBlock Classes="labor" Text="{Binding _t11, FallbackValue='', Converter={StaticResource DoubleOut}, StringFormat='{}{0} н/ч'}" />
                             </Border>
 
                             <StackPanel
@@ -1053,7 +1058,7 @@
                                 Grid.Row="0"
                                 Grid.Column="2"
                                 Classes="labor">
-                                <TextBlock Classes="labor" Text="{Binding _t12, FallbackValue='', StringFormat='{}{0} н/ч'}" />
+                                <TextBlock Classes="labor" Text="{Binding _t12, FallbackValue='', Converter={StaticResource DoubleOut}, StringFormat='{}{0} н/ч'}" />
                             </Border>
 
                             <StackPanel
@@ -1159,7 +1164,7 @@
                                 Grid.Row="0"
                                 Grid.Column="2"
                                 Classes="labor">
-                                <TextBlock Classes="labor" Text="{Binding _t13, FallbackValue='', StringFormat='{}{0} н/ч'}" />
+                                <TextBlock Classes="labor" Text="{Binding _t13, FallbackValue='', Converter={StaticResource DoubleOut}, StringFormat='{}{0} н/ч'}" />
                             </Border>
 
                             <StackPanel
@@ -1220,7 +1225,7 @@
                                 Grid.Row="0"
                                 Grid.Column="2"
                                 Classes="labor">
-                                <TextBlock Classes="labor" Text="{Binding _t14, FallbackValue='', StringFormat='{}{0} н/ч'}" />
+                                <TextBlock Classes="labor" Text="{Binding _t14, FallbackValue='', Converter={StaticResource DoubleOut}, StringFormat='{}{0} н/ч'}" />
                             </Border>
 
                             <StackPanel
@@ -1281,7 +1286,7 @@
                                 Grid.Row="0"
                                 Grid.Column="2"
                                 Classes="labor">
-                                <TextBlock Classes="labor" Text="{Binding _t15, FallbackValue='', StringFormat='{}{0} н/ч'}" />
+                                <TextBlock Classes="labor" Text="{Binding _t15, FallbackValue='', Converter={StaticResource DoubleOut}, StringFormat='{}{0} н/ч'}" />
                             </Border>
 
                             <StackPanel
@@ -1342,7 +1347,7 @@
                                 Grid.Row="0"
                                 Grid.Column="2"
                                 Classes="labor">
-                                <TextBlock Classes="labor" Text="{Binding _t16, FallbackValue='', StringFormat='{}{0} н/ч'}" />
+                                <TextBlock Classes="labor" Text="{Binding _t16, FallbackValue='', Converter={StaticResource DoubleOut}, StringFormat='{}{0} н/ч'}" />
                             </Border>
 
                             <StackPanel
@@ -1403,7 +1408,7 @@
                                 Grid.Row="0"
                                 Grid.Column="2"
                                 Classes="labor">
-                                <TextBlock Classes="labor" Text="{Binding _t17, FallbackValue='', StringFormat='{}{0} н/ч'}" />
+                                <TextBlock Classes="labor" Text="{Binding _t17, FallbackValue='', Converter={StaticResource DoubleOut}, StringFormat='{}{0} н/ч'}" />
                             </Border>
 
                             <StackPanel
@@ -1464,7 +1469,7 @@
                                 Grid.Row="0"
                                 Grid.Column="2"
                                 Classes="labor">
-                                <TextBlock Classes="labor" Text="{Binding _t18, FallbackValue='', StringFormat='{}{0} н/ч'}" />
+                                <TextBlock Classes="labor" Text="{Binding _t18, FallbackValue='', Converter={StaticResource DoubleOut}, StringFormat='{}{0} н/ч'}" />
                             </Border>
 
                             <StackPanel
@@ -1525,7 +1530,7 @@
                                 Grid.Row="0"
                                 Grid.Column="2"
                                 Classes="labor">
-                                <TextBlock Classes="labor" Text="{Binding _t19, FallbackValue='', StringFormat='{}{0} н/ч'}" />
+                                <TextBlock Classes="labor" Text="{Binding _t19, FallbackValue='', Converter={StaticResource DoubleOut}, StringFormat='{}{0} н/ч'}" />
                             </Border>
 
                             <StackPanel
@@ -1608,7 +1613,7 @@
                                 Grid.Row="0"
                                 Grid.Column="2"
                                 Classes="labor">
-                                <TextBlock Classes="labor" Text="{Binding _t20, FallbackValue='', StringFormat='{}{0} н/ч'}" />
+                                <TextBlock Classes="labor" Text="{Binding _t20, FallbackValue='', Converter={StaticResource DoubleOut}, StringFormat='{}{0} н/ч'}" />
                             </Border>
 
                             <StackPanel
@@ -1669,7 +1674,7 @@
                                 Grid.Row="0"
                                 Grid.Column="2"
                                 Classes="labor">
-                                <TextBlock Classes="labor" Text="{Binding _t21, FallbackValue='', StringFormat='{}{0} н/ч'}" />
+                                <TextBlock Classes="labor" Text="{Binding _t21, FallbackValue='', Converter={StaticResource DoubleOut}, StringFormat='{}{0} н/ч'}" />
                             </Border>
 
                             <StackPanel
@@ -1730,7 +1735,7 @@
                                 Grid.Row="0"
                                 Grid.Column="2"
                                 Classes="labor">
-                                <TextBlock Classes="labor" Text="{Binding _t22, FallbackValue='', StringFormat='{}{0} н/ч'}" />
+                                <TextBlock Classes="labor" Text="{Binding _t22, FallbackValue='', Converter={StaticResource DoubleOut}, StringFormat='{}{0} н/ч'}" />
                             </Border>
 
                             <StackPanel
@@ -1791,7 +1796,7 @@
                                 Grid.Row="0"
                                 Grid.Column="2"
                                 Classes="labor">
-                                <TextBlock Classes="labor" Text="{Binding _t23, FallbackValue='', StringFormat='{}{0} н/ч'}" />
+                                <TextBlock Classes="labor" Text="{Binding _t23, FallbackValue='', Converter={StaticResource DoubleOut}, StringFormat='{}{0} н/ч'}" />
                             </Border>
 
                             <StackPanel
@@ -1852,7 +1857,7 @@
                                 Grid.Row="0"
                                 Grid.Column="2"
                                 Classes="labor">
-                                <TextBlock Classes="labor" Text="{Binding _t24, FallbackValue='', StringFormat='{}{0} н/ч'}" />
+                                <TextBlock Classes="labor" Text="{Binding _t24, FallbackValue='', Converter={StaticResource DoubleOut}, StringFormat='{}{0} н/ч'}" />
                             </Border>
 
                             <StackPanel
@@ -1913,7 +1918,7 @@
                                 Grid.Row="0"
                                 Grid.Column="2"
                                 Classes="labor">
-                                <TextBlock Classes="labor" Text="{Binding _t25, FallbackValue='', StringFormat='{}{0} н/ч'}" />
+                                <TextBlock Classes="labor" Text="{Binding _t25, FallbackValue='', Converter={StaticResource DoubleOut}, StringFormat='{}{0} н/ч'}" />
                             </Border>
 
                             <StackPanel
