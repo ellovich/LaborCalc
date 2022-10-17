@@ -1,4 +1,6 @@
-﻿namespace LaborCalc.Models;
+﻿using System.Runtime.Serialization;
+
+namespace LaborCalc.Models;
 
 public class Project
 {
@@ -7,9 +9,11 @@ public class Project
     public string Location { get; set; }
 
     public StepsManager StepsManager { get; set; }
+
+    [DataMember]
     public ReportsManager ReportsManager { get; set; }
 
-
+    [JsonConstructor]
     public Project(string name, string location)
     {
         Name = name;
@@ -22,20 +26,28 @@ public class Project
     public Project()
     {
         Name = $"LaborCalc_{Id}";
-        Location = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\LaborCalc";
 
         StepsManager = StepsManager.CreateTemplate();
         ReportsManager = new ReportsManager(this);
     }
 
 
-    public void SaveToJson()
+    public async void SaveToJson()
     {
-        Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\LaborCalc");
         string json = JsonConvert.SerializeObject(this);
-        File.WriteAllText($"{Location}\\{Name}.labor", json);
 
-        Debug.WriteLine($"Saved to: {Location}\\{Name}.labor");
+        if (Location is null)
+        {
+            string standartLocation = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\LaborCalc";
+            Directory.CreateDirectory(standartLocation);
+            await File.WriteAllTextAsync($"{standartLocation}\\{Name}.labor", json);
+            Debug.WriteLine($"Saved to: {standartLocation}");
+        }
+        else 
+        {
+            await File.WriteAllTextAsync($"{Location}", json);
+            Debug.WriteLine($"Saved to: {Location}");
+        }
     }
 
     public static Project LoadFromJson(string path)
@@ -43,20 +55,9 @@ public class Project
         try
         {
             string json = File.ReadAllText(path);
-            var deserializedObject = JsonConvert.DeserializeObject<Project>(json);
+            var p = JsonConvert.DeserializeObject<Project>(json);
 
-            if (deserializedObject is null) 
-                throw new Exception("Failed to load project!");
-            else
-            {
-                return new Project()
-                {
-                    Name = deserializedObject.Name,
-                    Location = path,
-                    StepsManager = deserializedObject.StepsManager,
-                    ReportsManager = deserializedObject.ReportsManager,
-                };
-            }
+            return p;
         }
         catch(Exception ex)
         {

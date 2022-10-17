@@ -50,47 +50,40 @@ public partial class Item : ViewModelBase, IEntity, IReport
 public partial class Table : ViewModelBase, IEntity, IReport
 {
     public int Id => GetHashCode();
-    public double MethodicId { get; }
+    public double MethodicId { get; } = 0;
     public string Name { get; set; }
 
-    [ObservableProperty, NotifyPropertyChangedFor(nameof(FullLabor))] ObservableCollection<Item>? tableItems;
+    [ObservableProperty, NotifyPropertyChangedFor(nameof(FullLabor))] ObservableRangeCollection<Item>? tableItems;
 
-    bool _isCustom = false;
 
     public Table(string name, params Item[] tableItems)
     {
-        _isCustom = true;
-
         Name = name;
         TableItems = new(tableItems);
 
         for (int i = 0; i < TableItems.Count(); i++)
             TableItems[i].MethodicId = i + 1;
-
-        RemoveItem = new Command<Item>((Item item) => TableItems.Remove(item));
     }
 
-    [JsonConstructor]
     public Table(double methodicId, string name, params Item[] tableItems)
     {
-        _isCustom = false;
-
         MethodicId = methodicId;
         Name = name;
         TableItems = new(tableItems);
 
         for (int i = 0; i < TableItems.Count; i++)
             TableItems[i].MethodicId = i + 1;
-
-        RemoveItem = new Command<Item>((Item item) => TableItems.Remove(item));
     }
+
 
     public List<Item> SelectedItems => TableItems.Where(item => item.Quantity != 0).ToList();
 
     public double FullLabor => Math.Round(SelectedItems.Sum(item => item.Labor), 3);
 
-    [JsonIgnore]
-    public Command<Item> RemoveItem { get; set; }
+    bool _isCustom => (MethodicId == 0);
+
+    [RelayCommand] public void RemoveItem(Item item) { TableItems?.Remove(item); }
+
     public void AddItem(Item item) => TableItems?.Add(item);
 
 

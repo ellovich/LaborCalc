@@ -3,7 +3,7 @@
 public class ReportsManager
 {
     private Project _project { get; set; }
-    private string _path => $@"{_project.Location}\report{_project.Name}.html";
+    private string _path => $"{_project.Location}\\report{_project.Name}";
     private List<string> _reports = new();
 
     public ReportsManager(Project project)
@@ -54,6 +54,7 @@ public class ReportsManager
 
         try
         {
+            Directory.CreateDirectory(_path);
             File.Copy("Helpers/report_style.css", _path);
 
             using (var sw = new StreamWriter(_path, false, System.Text.Encoding.Default))

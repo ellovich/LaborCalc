@@ -25,11 +25,11 @@ namespace LaborCalc
 
 
 
-            //args = new string[]
-            //{
-            //    "",
-            //    "\"C:\\Users\\ello\\Desktop\\Проект23130.labor"
-            //};
+            args = new string[]
+            {
+                "",
+                "C:\\Users\\ello\\Desktop\\TEST_PROJECT.labor"
+            };
 
 
 
@@ -41,6 +41,9 @@ namespace LaborCalc
             if (args != null && args.Length > 1)
             {
                 project = Project.LoadFromJson(args[1]);
+                if (project == null)
+                    project = new();
+                project.Location = args[1]; // updating location
             }
             else
             {

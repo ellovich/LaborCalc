@@ -38,10 +38,10 @@ public partial class MainViewModel : ViewModelBase
     [RelayCommand] void New() { }
     [RelayCommand] void Open() { Project.LoadFromJson("FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF"); } // TODO 
     [RelayCommand] void Properties() { }
-    [RelayCommand] void Save() { Task.Run(() => Project.SaveToJson()); }
+    [RelayCommand] void Save() { Project.SaveToJson(); }
     [RelayCommand] void Exit() { }
 
-    [RelayCommand] void ExportToHtml() { Task.Run(() => Project.ReportsManager.Show()); }
+    [RelayCommand] void ExportToHtml() { Project.ReportsManager.Show(); }
     [RelayCommand] void ExportToExcel() { }
     [RelayCommand] void MailMe() { }
 
