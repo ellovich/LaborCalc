@@ -10,7 +10,7 @@ public partial class Step03_6 : Step // TODO нужна ли корректир�
         return Protocols * _norm;
     }
 
-    public override Report CreateReport()
+    public override string CreateHtmlReport()
     {
         string html = $@"
 <p>
@@ -19,7 +19,7 @@ public partial class Step03_6 : Step // TODO нужна ли корректир�
 </p>
 <p>Количество протоколов: {Protocols} ед.</p>
 ";
-        return new Report(this, html);
+        return html;
     }
 
     public Step03_6()

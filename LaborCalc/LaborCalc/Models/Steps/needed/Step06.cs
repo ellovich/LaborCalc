@@ -11,7 +11,7 @@ public partial class Step06 : Step
         return (_T_ит + _T_рт + _T_чс + _T_п) * Correction.Coef;
     }
 
-    public override Report CreateReport()
+    public override string CreateHtmlReport()
     {
         string html = $@"
 <p>
@@ -34,7 +34,7 @@ public partial class Step06 : Step
 </p>
 ";
 
-        return new Report(this, html);
+        return html;
     }
 
     public Step06()

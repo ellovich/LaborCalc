@@ -3,23 +3,54 @@
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:helpers="clr-namespace:LaborCalc.Helpers"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewModels="clr-namespace:LaborCalc.ViewModels"
     xmlns:views="clr-namespace:LaborCalc.Views"
     d:DesignHeight="720"
-    d:DesignWidth="740"
+    d:DesignWidth="940"
     mc:Ignorable="d">
+
+    <UserControl.Resources>
+        <helpers:StepToTabItemConverter x:Key="StepToTabItem" />
+    </UserControl.Resources>
 
     <Design.DataContext>
         <viewModels:MainViewModel />
     </Design.DataContext>
-    <!--<UserControl.DataContext>
-        <viewModels:MainViewModel />
-    </UserControl.DataContext>-->
 
     <views:HamburgerMenu
         Name="TabControl"
         Foreground="White"
-        Items="{Binding Tabs}" />
+		Classes="normal"
+        Items="{Binding Tabs}">
+    
+    <!--<FlyoutBase.AttachedFlyout>
+            <Flyout>
+                <TextBox Text="Hello World" />
+            </Flyout>
+        </FlyoutBase.AttachedFlyout>-->
+    
+    </views:HamburgerMenu>
+
+
+
+
+    <!--<views:HamburgerMenu
+        Name="TabControl"
+        Classes="normal"
+        Foreground="White"
+        Items="{Binding Project.StepsManager.DoneSteps, Converter={StaticResource StepToTabItem}}">
+
+		--><!--<FlyoutBase.AttachedFlyout>
+            <Flyout>
+                <TextBox Text="Hello World" />
+            </Flyout>
+        </FlyoutBase.AttachedFlyout>--><!--
+    </views:HamburgerMenu>-->
+
+
+
+
 
 </UserControl>

@@ -1,4 +1,7 @@
-﻿namespace LaborCalc.Models;
+﻿using MvvmHelpers.Commands;
+using System.Runtime.Serialization;
+
+namespace LaborCalc.Models;
 
 public partial class Item : ViewModelBase, IEntity, IReport
 {
@@ -7,13 +10,6 @@ public partial class Item : ViewModelBase, IEntity, IReport
     public string Name { get; }
     public string Measure { get; }
     public double Norm { get; }
-
-    //[ObservableProperty, NotifyPropertyChangedFor(nameof(_calcLabor))] double quantity;
-    //[ObservableProperty, NotifyPropertyChangedFor(nameof(_calcLabor))] Correction correction;
-
-    // public double Labor { get; private set; }
-    // private double _calcLabor { set { Labor = Math.Round(Quantity * Norm * Correction.Coef, 3); } }
-
 
     [ObservableProperty, NotifyPropertyChangedFor(nameof(Labor))] double quantity;
     [ObservableProperty, NotifyPropertyChangedFor(nameof(Labor))] Correction correction;
@@ -70,6 +66,8 @@ public partial class Table : ViewModelBase, IEntity, IReport
 
         for (int i = 0; i < TableItems.Count(); i++)
             TableItems[i].MethodicId = i + 1;
+
+        RemoveItem = new Command<Item>((Item item) => TableItems.Remove(item));
     }
 
     [JsonConstructor]
@@ -83,14 +81,18 @@ public partial class Table : ViewModelBase, IEntity, IReport
 
         for (int i = 0; i < TableItems.Count; i++)
             TableItems[i].MethodicId = i + 1;
+
+        RemoveItem = new Command<Item>((Item item) => TableItems.Remove(item));
     }
 
     public List<Item> SelectedItems => TableItems.Where(item => item.Quantity != 0).ToList();
 
-    public double FullLabor => Math.Round( SelectedItems.Sum(item => item.Labor), 3 );
+    public double FullLabor => Math.Round(SelectedItems.Sum(item => item.Labor), 3);
 
+    [JsonIgnore]
+    public Command<Item> RemoveItem { get; set; }
     public void AddItem(Item item) => TableItems?.Add(item);
-    public void RemoveItem(Item item) => TableItems?.Remove(item);
+
 
     public string ToHtml()
     {

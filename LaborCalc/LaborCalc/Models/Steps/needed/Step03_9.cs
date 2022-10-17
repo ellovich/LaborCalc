@@ -10,7 +10,7 @@ public partial class Step03_9 : Step // TODO нужна ли корректир�
         return K * T;
     }
 
-    public override Report CreateReport()
+    public override string CreateHtmlReport()
     {
         string html = $@"
 <p>
@@ -21,7 +21,7 @@ public partial class Step03_9 : Step // TODO нужна ли корректир�
     t = {T} н/ч - длительность отладки <br>
 </p>
 ";
-        return new Report(this, html);
+        return html;
     }
 
     public Step03_9()

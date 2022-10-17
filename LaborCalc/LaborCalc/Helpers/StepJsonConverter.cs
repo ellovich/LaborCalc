@@ -5,7 +5,7 @@ namespace LaborCalc.Helpers;
 
 public class StepJsonConverter : JsonConverter
 {
-    static JsonSerializerSettings SpecifiedSubclassConversion = new () 
+    static readonly JsonSerializerSettings SpecifiedSubclassConversion = new () 
     { 
         ContractResolver = new BaseSpecifiedConcreteClassConverter() 
     };
@@ -19,7 +19,6 @@ public class StepJsonConverter : JsonConverter
     {
         JObject jo = JObject.Load(reader);
 
-
         return jo["MethodicId"].Value<double>() switch
         {
             1 => JsonConvert.DeserializeObject<Step01>(jo.ToString(), SpecifiedSubclassConversion),
@@ -29,7 +28,7 @@ public class StepJsonConverter : JsonConverter
             3.7 => JsonConvert.DeserializeObject<Step03_7>(jo.ToString(), SpecifiedSubclassConversion),
             3.8 => JsonConvert.DeserializeObject<Step03_8>(jo.ToString(), SpecifiedSubclassConversion),
             3.9 => JsonConvert.DeserializeObject<Step03_9>(jo.ToString(), SpecifiedSubclassConversion),
-            4 => JsonConvert.DeserializeObject<Step04>(jo.ToString(), SpecifiedSubclassConversion),
+            4.6 => JsonConvert.DeserializeObject<Step04_6>(jo.ToString(), SpecifiedSubclassConversion),
             5 => JsonConvert.DeserializeObject<Step05>(jo.ToString(), SpecifiedSubclassConversion),
             6 => JsonConvert.DeserializeObject<Step06>(jo.ToString(), SpecifiedSubclassConversion),
             7 => JsonConvert.DeserializeObject<Step07>(jo.ToString(), SpecifiedSubclassConversion),

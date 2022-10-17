@@ -10,14 +10,14 @@ public partial class Step18 : Step
         return T_18_1.FullLabor;
     }
 
-    public override Report CreateReport()
+    public override string CreateHtmlReport()
     {
         string html = $@"
 <p>Трудозатраты на изготовление оптических изделий рассчиваются согласно следующей таблице:</p>
 {T_18_1.ToHtml()}
 ";
 
-        return new Report(this, html);
+        return html;
     }
 
 

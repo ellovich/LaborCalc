@@ -37,7 +37,7 @@ public partial class Step03_2 : Step // уведомлять ti
 ";
     }
 
-    public override Report CreateReport()
+    public override string CreateHtmlReport()
     {
         #region ROWS
         // t.3-2
@@ -254,7 +254,7 @@ $@"
 
 ";
 
-        return new Report(this, html);
+        return html;
     }
 
     public Step03_2()
@@ -320,7 +320,7 @@ $@"
     public static string T2 = "Ввод геометрии палуб, платформ, ярусов надстроек и др.";
     private double _t2 => !IsT2 ? 0 : _t1 * _k2 * K_нов_2.Coef / K1.Coef;
     private double _k2 => N_пал_Н < 6 ? 1.8 : 1.8 + 0.1 * (N_пал_Н - 5); // выбор делается автоматически
-    [ObservableProperty, NotifyPropertyChangedFor(nameof(Labor), nameof(_t2))] public int n_пал_Н; // количество палуб, платформ и ярусов надстройки (исп. в k2)
+    [ObservableProperty, NotifyPropertyChangedFor(nameof(Labor), nameof(_t2))] public int n_пал_Н; // количество палуб, платформ и ярусов надстроки (исп. в k2)
     [ObservableProperty, NotifyPropertyChangedFor(nameof(Labor), nameof(_t2))] Correction k_нов_2 = s_Corrections3_6[0];
     [ObservableProperty, NotifyPropertyChangedFor(nameof(Labor), nameof(_t2))] bool isT2 = true;
     #endregion t2
@@ -407,7 +407,7 @@ $@"
     private const double _q_ВО = 10;
 
     [ObservableProperty, NotifyPropertyChangedFor(nameof(Labor),
-        nameof(_t8), nameof(_t9), nameof(_t10))] public int n_ВО; // количество ВО (водонипрониц. отсеков) судна, включая газоплотные отделения надстройки
+        nameof(_t8), nameof(_t9), nameof(_t10))] public int n_ВО; // количество ВО (водонипрониц. отсеков) судна, включая газоплотные отделения надстроки
 
     [ObservableProperty, NotifyPropertyChangedFor(nameof(Labor),
         nameof(_t8), nameof(_t9), nameof(_t10))] Correction k8 = s_Corrections3_4_5[0];
@@ -505,7 +505,7 @@ $@"
         nameof(_t12), nameof(_t17), nameof(_t24))] public int n_АУ;  // количество АУ (аварийных участков) (исп. в t12)
 
     [ObservableProperty, NotifyPropertyChangedFor(nameof(Labor),
-        nameof(_t12), nameof(K8), nameof(_t17), nameof(_t24))] public int n_пал_БЖ; // количество палуб, платформ и ярусов надстройки (исп. в t12)
+        nameof(_t12), nameof(K8), nameof(_t17), nameof(_t24))] public int n_пал_БЖ; // количество палуб, платформ и ярусов надстроки (исп. в t12)
 
     [ObservableProperty, NotifyPropertyChangedFor(nameof(Labor), nameof(_t17), nameof(_t24))] Correction k_нов_12 = s_Corrections3_6[0];
 
@@ -637,7 +637,7 @@ $@"
         new Correction("Не требуется", 0)
     }; // k_нов Коэффициент новизны разработки
 
-    private Correction _stepCorrection; // общий коэффициент новизны работы
+    private Correction _stepCorrection = s_Corrections3_6[0]; // общий коэффициент новизны работы
     public Correction StepCorrection // Reactive
     {
         get => _stepCorrection;

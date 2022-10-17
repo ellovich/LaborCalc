@@ -1,0 +1,194 @@
+<UserControl
+    x:Class="LaborCalc.Views.Step02Table"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:LaborCalc.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:helpers="using:LaborCalc.Helpers"
+    xmlns:laborCalc="clr-namespace:LaborCalc"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:models="clr-namespace:LaborCalc.Models"
+    xmlns:viewModels="clr-namespace:LaborCalc.ViewModels"
+    xmlns:views="clr-namespace:LaborCalc.Views"
+    d:DesignHeight="960"
+    d:DesignWidth="700"
+    mc:Ignorable="d">
+
+    <UserControl.Styles>
+        <Style Selector="Border.step02style">
+            <Setter Property="Background" Value="#303030" />
+            <Setter Property="MinWidth" Value="300" />
+            <Setter Property="BorderBrush" Value="#303030" />
+            <Setter Property="Border.BoxShadow" Value="0 0 1 1 #2000" />
+            <Setter Property="Margin" Value="0, 0, 0, 0" />
+            <Setter Property="Padding" Value="15, 0, 15, 10" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="CornerRadius" Value="10" />
+            <Setter Property="Opacity" Value="0.85" />
+        </Style>
+        <Style Selector="Border.step02style:pointerover">
+            <Setter Property="Opacity" Value="1" />
+        </Style>
+    </UserControl.Styles>
+
+    <UserControl.Resources>
+        <helpers:DoubleOutputConverter x:Key="DoubleOut" />
+    </UserControl.Resources>
+
+    <Border Padding="15,0,15,0" Classes="step02style">
+
+        <DockPanel>
+
+            <Grid
+                Margin="0,10"
+                ColumnDefinitions="auto, auto, *, auto, auto, auto"
+                DockPanel.Dock="Top">
+
+                <!--  UP  -->
+                <Button
+                    Grid.Column="0"
+                    Margin="0,0,5,0"
+                    Command="{Binding MoveUpCmd}">
+                    <PathIcon Data="{StaticResource chevron_up_regular}" />
+                </Button>
+
+                <!--  DOWN  -->
+                <Button
+                    Grid.Column="1"
+                    Margin="0,0,5,0"
+                    Command="{Binding MoveDownCmd}">
+                    <PathIcon Data="{StaticResource chevron_down_regular}" />
+                </Button>
+
+                <!--  NAME  -->
+                <TextBox
+                    Name="DocName"
+                    Grid.Column="2"
+                    Text="{Binding TableModel.Name}"
+                    Watermark="Название этапа" />
+
+                <!--  ADD DOC  -->
+                <Button Grid.Column="3" Margin="5,0,0,0">
+                    <PathIcon Data="{StaticResource text_bullet_list_add_regular}" />
+                    <Button.Flyout>
+                        <Flyout Placement="Bottom">
+                            <ItemsControl Items="{Binding SingleDocsActions}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Button
+                                            Width="400"
+                                            VerticalAlignment="Stretch"
+                                            Background="Transparent"
+                                            Command="{Binding Command}"
+                                            Content="{Binding Header}" />
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </Flyout>
+                    </Button.Flyout>
+                </Button>
+
+                <!--  REMOVE  -->
+                <Button
+                    Grid.Column="4"
+                    Margin="5,0,5,0"
+                    Click="RemoveSuperDoc_Click">
+                    <PathIcon Data="{StaticResource delete_regular}" />
+                </Button>
+
+                <!--  LABOR  -->
+                <Border Grid.Column="5" Classes="labor">
+                    <TextBlock Classes="labor" Text="{Binding FullLabor, FallbackValue='#ERROR', Converter={StaticResource DoubleOut}, StringFormat='{}{0} н/ч'}" />
+                </Border>
+
+            </Grid>
+
+            <DataGrid
+                Name="DocsTable"
+                Margin="0,0,0,20"
+                VerticalAlignment="Stretch"
+                Classes="common"
+                DockPanel.Dock="Top">
+
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn Width="2*" Header="Наименование работы">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBox Classes="read l" Text="{Binding Name}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    <DataGridTemplateColumn Width="*" Header="Единица измерения">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBox
+                                    Classes="read"
+                                    Text="{Binding Measure}"
+                                    ToolTip.Tip="{Binding Norm}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    <DataGridTemplateColumn Width="auto" Header="Норма">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBox Classes="read" Text="{Binding Norm}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    <DataGridTemplateColumn Width="auto" Header="Количество">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <NumericUpDown Classes="count" Value="{Binding Quantity}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    <DataGridTemplateColumn Width="auto" Header="Степень коррекции">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <ComboBox
+                                    Classes="correction"
+                                    Items="{x:Static models:Step02.s_Corrections2_9}"
+                                    SelectedItem="{Binding Correction}">
+                                    <ComboBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding}" />
+                                        </DataTemplate>
+                                    </ComboBox.ItemTemplate>
+                                </ComboBox>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    <DataGridTemplateColumn Width="auto" Header="Трудоёмкость">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBox Classes="read" Text="{Binding Labor}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    <DataGridTemplateColumn Width="30">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button
+                                    Width="30"
+                                    Height="30"
+                                    Background="Transparent"
+                                    Command="{Binding RemoveItem}"
+                                    CommandParameter="{Binding .}">
+                                    <PathIcon Data="{StaticResource delete_regular}" />
+                                </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                </DataGrid.Columns>
+            </DataGrid>
+
+        </DockPanel>
+    </Border>
+</UserControl>

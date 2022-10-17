@@ -1,11 +1,14 @@
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
 using Avalonia.Media;
+using Avalonia.Styling;
 
 namespace LaborCalc.Views;
 
-public class HamburgerMenu : TabControl
+[PseudoClasses(":normal")]
+public class HamburgerMenu : TabControl, IStyleable
 {
     private SplitView? _splitView;
 
@@ -72,4 +75,34 @@ public class HamburgerMenu : TabControl
             }
         }
     }
+
+    #region
+
+    Type IStyleable.StyleKey => typeof(HamburgerMenu);
+
+    public HamburgerMenu()
+    {
+        PseudoClasses.Add(":normal");
+        this.GetObservable(SelectedContentProperty).Subscribe(OnContentChanged);
+    }
+
+    private void OnContentChanged(object obj)
+    {
+        if (AnimateOnChange)
+        {
+            PseudoClasses.Remove(":normal");
+            PseudoClasses.Add(":normal");
+        }
+    }
+
+    public bool AnimateOnChange
+    {
+        get => GetValue(AnimateOnChangeProperty);
+        set => SetValue(AnimateOnChangeProperty, value);
+    }
+
+    public static readonly StyledProperty<bool> AnimateOnChangeProperty =
+        AvaloniaProperty.Register<HamburgerMenu, bool>(nameof(AnimateOnChange), true);
+
+    #endregion
 }

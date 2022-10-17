@@ -15,18 +15,51 @@ namespace LaborCalc
 
         public override void OnFrameworkInitializationCompleted()
         {
+            Project project;
+
+            string[] args = Environment.GetCommandLineArgs();
+
+
+
+
+
+
+
+            //args = new string[]
+            //{
+            //    "",
+            //    "\"C:\\Users\\ello\\Desktop\\Проект23130.labor"
+            //};
+
+
+
+
+
+
+
+
+            if (args != null && args.Length > 1)
+            {
+                project = Project.LoadFromJson(args[1]);
+            }
+            else
+            {
+                project = new();
+            }
+
+
             if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
             {
                 desktop.MainWindow = new MainWindow
                 {
-                    DataContext = new MainViewModel()
+                    DataContext = new MainViewModel(project)
                 };
             }
             else if (ApplicationLifetime is ISingleViewApplicationLifetime singleViewPlatform)
             {
                 singleViewPlatform.MainView = new MainView
                 {
-                    DataContext = new MainViewModel()
+                    DataContext = new MainViewModel(project)
                 };
             }
 

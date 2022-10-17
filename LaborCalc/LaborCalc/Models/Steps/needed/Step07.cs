@@ -19,7 +19,7 @@ public partial class Step07 : Step
         //return Math.Round(steps.Sum(st => st.Labor) * ((double)Percent / 100), 2);
     }
 
-    public override Report CreateReport()
+    public override string CreateHtmlReport()
     {
         string html = "";
 
@@ -31,7 +31,7 @@ public partial class Step07 : Step
 
         
 
-        return new Report(this, html);
+        return html;
     }
 
     public Step07()

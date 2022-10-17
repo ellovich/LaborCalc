@@ -54,7 +54,7 @@
 		<Compile Include="Models\Steps\needed\Step03_9.cs" />
 		<Compile Include="Models\Steps\needed\Step03_8.cs" />
 		<Compile Include="Models\Steps\needed\Step03_7.cs" />
-		<Compile Include="Models\Steps\needed\Step04.cs" />
+		<Compile Include="Models\Steps\needed\Step04_6.cs" />
 		<Compile Include="Models\Steps\needed\Step06.cs" />
 		<Compile Include="Models\Steps\needed\Step03_6.cs" />
 		<Compile Include="Models\Steps\needed\Step07.cs" />
@@ -91,6 +91,9 @@
 	    <DesignTime>True</DesignTime>
 	    <AutoGen>True</AutoGen>
 	    <DependentUpon>Resource.resx</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\Steps\Step04_6Page.axaml.cs">
+	    <DependentUpon>Step04_6Page.axaml</DependentUpon>
 	  </Compile>
 	  <Compile Update="Views\Steps\Step15Page.axaml.cs">
 	    <DependentUpon>Step15Page.axaml</DependentUpon>
@@ -130,8 +133,11 @@
 	  </Compile>
 	</ItemGroup>
 	<ItemGroup>
-	  <None Update="Reports\report_style.css">
+	  <None Update="Helpers\report_style.css">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>
+	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="ViewModels\Steps\" />
 	</ItemGroup>
 </Project>

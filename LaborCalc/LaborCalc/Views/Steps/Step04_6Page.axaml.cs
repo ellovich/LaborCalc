@@ -1,22 +1,22 @@
-using Avalonia.Interactivity;
+﻿using Avalonia.Interactivity;
 
 namespace LaborCalc.Views;
 
-public partial class Step12Page : UserControl
+public partial class Step04_6Page : UserControl
 {
-    private Step12 Step { get; set; }
+    private Step04_6 Step { get; set; }
 
-    public Step12Page()
+    public Step04_6Page()
     {
         InitializeComponent();
-        Step = new Step12();
+        Step = new Step04_6();
         DataContext = Step;
     }
 
-    public Step12Page(Step step)
+    public Step04_6Page(Step step)
     {
         InitializeComponent();
-        Step = (Step12)step;
+        Step = (Step04_6)step;
         DataContext = Step;
     }
 

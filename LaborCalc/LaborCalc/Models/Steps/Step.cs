@@ -3,11 +3,13 @@
 [JsonConverter(typeof(StepJsonConverter))]
 public abstract partial class Step : ViewModelBase, IEntity
 {
-    public int Id => GetHashCode();
+    public int Id => this.GetHashCode() + (DateTime.Now).GetHashCode();
     public abstract double MethodicId { get; }
     public abstract string MethodicName { get; }
     public string Name { get; set; }
     public abstract double CalcLabor();
+
+    [NotifyParentProperty(true)]
     public double Labor => Math.Round( CalcLabor(), 2 );
 
     protected Step()
@@ -15,27 +17,27 @@ public abstract partial class Step : ViewModelBase, IEntity
         Name = MethodicName;
     }
 
-    public abstract Report CreateReport();
+    public abstract string CreateHtmlReport();
 
 
     [RelayCommand]
     void DeleteStep()
     {
-        //var messageBoxCustomWindow = MessageBox.Avalonia.MessageBoxManager
-        //               .GetMessageBoxCustomWindow(new MessageBoxCustomParams
-        //               {
-        //                   Style = Style.UbuntuLinux,
-        //                   ContentMessage = "支持FontFamily",
-        //                   FontFamily = "Microsoft YaHei,Simsun",
-        //                   ButtonDefinitions = new[] {
-        //                new ButtonDefinition {Name = "My"},
-        //                new ButtonDefinition {Name = "Buttons", Type = ButtonType.Colored}
-        //                   },
-        //                   WindowStartupLocation = WindowStartupLocation.CenterOwner
-        //               });
-        //messageBoxCustomWindow.Show();
+        // var messageBoxCustomWindow = MessageBox.Avalonia.MessageBoxManager
+        //                .GetMessageBoxCustomWindow(new MessageBoxCustomParams
+        //                {
+        //                    Style = Style.UbuntuLinux,
+        //                    ContentMessage = "支持FontFamily",
+        //                    FontFamily = "Microsoft YaHei,Simsun",
+        //                    ButtonDefinitions = new[] {
+        //                 new ButtonDefinition {Name = "My"},
+        //                 new ButtonDefinition {Name = "Buttons", Type = ButtonType.Colored}
+        //                    },
+        //                    WindowStartupLocation = WindowStartupLocation.CenterOwner
+        //                });
+        // messageBoxCustomWindow.Show();
 
-        // StepsManager.DoneSteps.Remove(this);
+        // Project.StepsManager.DoneSteps.Remove(this);
     }
 
     //public void Serialize()
@@ -56,6 +58,7 @@ public abstract partial class Step : ViewModelBase, IEntity
             3.7 => new Step03_7() { Name = name },
             3.8 => new Step03_8() { Name = name },
             3.9 => new Step03_9() { Name = name },
+            4.6 => new Step04_6() { Name = name },
             5 => new Step05() { Name = name },
             6 => new Step06() { Name = name },
             7 => new Step07() { Name = name },

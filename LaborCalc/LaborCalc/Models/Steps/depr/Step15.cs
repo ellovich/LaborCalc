@@ -7,7 +7,7 @@ public partial class Step15 : Step
 
     public Step15() { }
 
-    public override Report CreateReport()
+    public override string CreateHtmlReport()
     {
 /*
 15.1 Трудоемкость работ по сертификации программного обеспечения принимается

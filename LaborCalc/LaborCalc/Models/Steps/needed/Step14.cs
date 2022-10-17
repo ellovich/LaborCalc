@@ -7,7 +7,7 @@ public partial class Step14 : Step
 
     public override double CalcLabor() => T_14_1.FullLabor;
 
-    public override Report CreateReport()
+    public override string CreateHtmlReport()
     {
         string html = $@"
 <p>Типовые затраты времени на закупку аппаратных и программных средств, а также сборку 
@@ -15,7 +15,7 @@ public partial class Step14 : Step
 {T_14_1.ToHtml()}
 ";
 
-        return new Report(this, html);
+        return html;
     }
 
     public Step14()

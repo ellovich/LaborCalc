@@ -10,7 +10,7 @@ public partial class Step03_8 : Step // TODO нужна ли корректир�
         return N_ср * _q_ср;
     }
 
-    public override Report CreateReport()
+    public override string CreateHtmlReport()
     {
         string html = $@"
 <p>
@@ -21,7 +21,7 @@ public partial class Step03_8 : Step // TODO нужна ли корректир�
     q<sub>ср</sub> = {_q_ср.Out()} - укрупненная норма времени одного расчёта <br>
 </p>
 ";
-        return new Report(this, html);
+        return html;
     }
 
     public Step03_8()

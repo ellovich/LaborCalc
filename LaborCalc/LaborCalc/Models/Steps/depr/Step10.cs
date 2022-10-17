@@ -12,7 +12,7 @@ public partial class Step10 : Step
         throw new NotImplementedException();
     }
 
-    public override Report CreateReport()
+    public override string CreateHtmlReport()
     {
         throw new NotImplementedException();
     }

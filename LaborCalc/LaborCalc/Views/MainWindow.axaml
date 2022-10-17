@@ -7,7 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewModels="clr-namespace:LaborCalc.ViewModels"
     xmlns:views="clr-namespace:LaborCalc.Views"
-    Title="{Binding StepsManager.ProjName, StringFormat='LaborCalc: {0}'}"
+    Title="{Binding Project.Name, StringFormat='LaborCalc: {0}'}"
     d:DesignHeight="480"
     d:DesignWidth="420"
     d:Height="1600"
@@ -17,12 +17,20 @@
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
 
+    <Design.DataContext>
+        <viewModels:MainViewModel />
+    </Design.DataContext>
+    <Window.DataContext>
+        <viewModels:MainViewModel />
+    </Window.DataContext>
+
     <!--
         ExtendClientAreaChromeHints="PreferSystemChrome"
         ExtendClientAreaTitleBarHeightHint="-1"
         ExtendClientAreaToDecorationsHint="True"
         SystemDecorations="Full"
     -->
+
 
     <DockPanel LastChildFill="True">
 
@@ -76,7 +84,7 @@
         <TextBlock
             Margin="8,8,8,8"
             DockPanel.Dock="Bottom"
-            Text="{Binding StepsManager.FullLabor, StringFormat=Общая трудоёмкость: {0} н/ч}"
+            Text="{Binding Project.StepsManager.FullLabor, StringFormat='Общая трудоёмкость: {0} н/ч', FallbackValue='#ERROR'}"
             TextAlignment="Right" />
 
         <!--  Content view  -->

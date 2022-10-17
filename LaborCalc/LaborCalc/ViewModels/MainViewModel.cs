@@ -5,38 +5,43 @@ namespace LaborCalc.ViewModels;
 public partial class MainViewModel : ViewModelBase
 {
     [ObservableProperty]
-    ObservableRangeCollection<TabItem>? tabs = new ObservableRangeCollection<TabItem>();
+    ObservableCollection<TabItem>? tabs = new();
 
-    StepsManager StepsManager = StepsManager.LoadAll();
+    public Project Project { get; set; }
+
+    public MainViewModel(Project project)
+    {
+        Project = project;
+        LoadTabs();
+    }
 
     public MainViewModel()
     {
-        Tabs.AddRange(StepToTabItemConverter.Convert(StepsManager.DoneSteps));
+        Project = new();
+        LoadTabs();
+    }
+
+    private void LoadTabs()
+    {
+        Tabs = StepToTabItemConverter.Convert(Project.StepsManager.DoneSteps);
         Tabs.Insert(0, new TabItem()
         {
             Header = "Все этапы",
-            Content = new StepsManagerPage(StepsManager),
-            [!TabItem.TagProperty] = new Binding(nameof(StepsManager.FullLabor)) { Source = StepsManager }
+            Content = new StepsManagerPage(Project.StepsManager),
+            [!TabItem.TagProperty] = new Binding(nameof(Project.StepsManager.FullLabor)) { Source = Project.StepsManager }
         });
-
-        //// сделать чтобы не удалялись старые вкладки
-        //StepsManager.DoneSteps.CollectionChanged += (obj, args) =>
-        //{
-        //    Tabs.Clear();
-        //    Tabs.Add(StepManagerPageTab);
-        //    Tabs.AddRange(StepToTabItemConverter.Convert(StepsManager.DoneSteps));
-        //};
     }
+
 
     #region MENU COMMANDS
 
-    [RelayCommand] void New() { /*StepsManager.NewInstance();*/ }
-    [RelayCommand] void Open() { StepsManager.LoadAll(); }
+    [RelayCommand] void New() { }
+    [RelayCommand] void Open() { Project.LoadFromJson("FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF"); } // TODO 
     [RelayCommand] void Properties() { }
-    [RelayCommand] void Save() { StepsManager.SaveAll(); }
+    [RelayCommand] void Save() { Task.Run(() => Project.SaveToJson()); }
     [RelayCommand] void Exit() { }
 
-    [RelayCommand] void ExportToHtml() {/* Task.Run(() => Report.Show());*/ }
+    [RelayCommand] void ExportToHtml() { Task.Run(() => Project.ReportsManager.Show()); }
     [RelayCommand] void ExportToExcel() { }
     [RelayCommand] void MailMe() { }
 

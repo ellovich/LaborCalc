@@ -12,7 +12,7 @@ public partial class Step09 : Step
             T_9_1.FullLabor;
     }
 
-    public override Report CreateReport()
+    public override string CreateHtmlReport()
     {
         string html = $@"
 <p>Нормы времени на математическое моделирование определяются по следующей таблице:</p>
@@ -27,7 +27,7 @@ $@"
 " : "")}
 ";
 
-        return new Report(this, html);
+        return html;
     }
 
 

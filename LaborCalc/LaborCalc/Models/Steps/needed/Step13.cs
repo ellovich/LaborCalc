@@ -11,11 +11,11 @@ public partial class Step13 : Step
         //return т_13_1.ОбщаяТрудоемкость;
     }
 
-    public override Report CreateReport()
+    public override string CreateHtmlReport()
     {
-        string algo = "Трудоемкость пуско-наладочных работ определяется как сумма трудоемкостей технологических этапов их проведения.\n";
+        string html = "Трудоемкость пуско-наладочных работ определяется как сумма трудоемкостей технологических этапов их проведения.\n";
 //         algo += т_13_1.ВывестиВыбранные();
-        return new Report(this, algo);
+        return html;
     }
 
     //#region ДАННЫЕ

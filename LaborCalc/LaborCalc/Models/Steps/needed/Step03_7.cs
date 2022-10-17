@@ -37,7 +37,7 @@ public partial class Step03_7 : Step // TODO не выставляются ко�
 ";
     }
 
-    public override Report CreateReport()
+    public override string CreateHtmlReport()
     {
         #region rows
         string rowT1 = RowHtmlCreator(1, T1, "q<sub>пш</sub> ⋅ n<sub>пш</sub> ⋅ k<sub>1</sub> ⋅ k<sub>нов</sub>", _t1, new string[] {
@@ -88,7 +88,7 @@ public partial class Step03_7 : Step // TODO не выставляются ко�
 </table>
 ";
 
-        return new Report(this, html);
+        return html;
     }
 
     public Step03_7()
@@ -103,73 +103,94 @@ public partial class Step03_7 : Step // TODO не выставляются ко�
 
     #region DATA
 
-    [ObservableProperty, NotifyPropertyChangedFor(nameof(Labor))] public int n_пш; // количество практических шпангоутов
-    [ObservableProperty, NotifyPropertyChangedFor(nameof(Labor))] public int n_ВО; // количество ВО судна, включая газоплотные отделения надстройки
-
 
     #region ti
 
     #region t1
     public static string T1 = "Ввод геометрии теоретической поверхности корпуса";
-    private double _t1 => !IsT1 ? 0 : _q_пш * N_пш * K1.Coef * K_нов_1.Coef;
+    [NotifyParentProperty(true)] private double _t1 => !IsT1 ? 0 : _q_пш * N_пш * K1.Coef * K_нов_1.Coef;
     private const double _q_пш = 1.6;
-    [ObservableProperty, NotifyPropertyChangedFor(nameof(Labor))] Correction k1;
+
+    [ObservableProperty, NotifyPropertyChangedFor(nameof(Labor),
+        nameof(_t1), nameof(_t5))] public int n_пш;  // количество практических шпангоутов
+
+    [ObservableProperty, NotifyPropertyChangedFor(nameof(Labor),
+        nameof(_t1), nameof(_t5))] Correction k1 = s_Corrections3_4_1[0];
+
     public static List<Correction> s_Corrections3_4_1 = new()
     {
         new Correction("Традиционные обводы корпуса", 1),
         new Correction("Сложные обводы носовой и кормовой оконечности", 1.2)
     }; // k_1 Cложность геометрии обводов корпуса
-    [ObservableProperty, NotifyPropertyChangedFor(nameof(Labor))] Correction k_нов_1;
-    [ObservableProperty, NotifyPropertyChangedFor(nameof(Labor))] bool isT1 = true;
+
+    [ObservableProperty, NotifyPropertyChangedFor(nameof(Labor),
+        nameof(_t1), nameof(_t5))] Correction k_нов_1 = s_Corrections3_6[0];
+
+    [ObservableProperty, NotifyPropertyChangedFor(nameof(Labor),
+        nameof(_t1), nameof(_t5))] bool isT1 = true;
     #endregion t1
 
     #region t5
     public static string T5 = "Ввод постоянных данных по кораблю";
     private double _t5 => !IsT5 ? 0 : _t1 * _k5 * K_нов_5.Coef / K1.Coef;
     private const double _k5 = 2.2;
-    [ObservableProperty, NotifyPropertyChangedFor(nameof(Labor))] Correction k_нов_5;
-    [ObservableProperty, NotifyPropertyChangedFor(nameof(Labor))] bool isT5 = true;
+    [ObservableProperty, NotifyPropertyChangedFor(nameof(Labor), nameof(_t5))] Correction k_нов_5 = s_Corrections3_6[0];
+    [ObservableProperty, NotifyPropertyChangedFor(nameof(Labor), nameof(_t5))] bool isT5 = true;
     #endregion t5
 
     #region t8
     public static string T8 = "Ввод геометрии водонепроницаемых отсеков ";
     private double _t8 => !IsT8 ? 0 : _q_ВО * N_ВО * K8.Coef * K_нов_8.Coef;
     private const double _q_ВО = 10;
-    [ObservableProperty, NotifyPropertyChangedFor(nameof(Labor))] Correction k8;
+
+    [ObservableProperty, NotifyPropertyChangedFor(nameof(Labor),
+        nameof(_t8), nameof(_t9), nameof(_t10))]
+    public int n_ВО; // количество ВО (водонипрониц. отсеков) судна, включая газоплотные отделения надстроки
+
+    [ObservableProperty, NotifyPropertyChangedFor(nameof(Labor),
+        nameof(_t8), nameof(_t9), nameof(_t10))]
+    Correction k8 = s_Corrections3_4_5[0];
+
     public static List<Correction> s_Corrections3_4_5 = new()
     {
         new Correction("Традиционная архитектура", 1),
         new Correction("Наличие второго борта и др. особенности", 1.2)
     }; // k_8 Cложность геометрии ВО
-    [ObservableProperty, NotifyPropertyChangedFor(nameof(Labor))] Correction k_нов_8;
-    [ObservableProperty, NotifyPropertyChangedFor(nameof(Labor))] bool isT8 = true;
+
+    [ObservableProperty, NotifyPropertyChangedFor(nameof(Labor),
+        nameof(_t8), nameof(_t9), nameof(_t10))]
+    Correction k_нов_8 = s_Corrections3_6[0];
+
+    [ObservableProperty, NotifyPropertyChangedFor(nameof(Labor),
+        nameof(_t8), nameof(_t9), nameof(_t10))]
+    bool isT8 = true;
     #endregion t8
 
     #region t9
     public static string T9 = "Ввод постоянных данных водонепроницаемых отсеков";
     private double _t9 => !IsT9 ? 0 : _t8 * _k9 * K_нов_9.Coef;
     private const double _k9 = 2.7;
-    [ObservableProperty, NotifyPropertyChangedFor(nameof(Labor))] Correction k_нов_9;
-    [ObservableProperty, NotifyPropertyChangedFor(nameof(Labor))] bool isT9 = true;
+    [ObservableProperty, NotifyPropertyChangedFor(nameof(Labor), nameof(_t9))] Correction k_нов_9 = s_Corrections3_6[0];
+    [ObservableProperty, NotifyPropertyChangedFor(nameof(Labor), nameof(_t9))] bool isT9 = true;
     #endregion t9
 
     #region t10
     public static string T10 = "Ввод данных по датчикам затопления отсеков (заполнения цистерн)";
     private double _t10 => !IsT10 ? 0 : _t8 * K10.Coef * K_нов_10.Coef;
-    [ObservableProperty, NotifyPropertyChangedFor(nameof(Labor))] Correction k10;
-    public static List<Correction> s_Corrections3_4_6= new()
+    [ObservableProperty, NotifyPropertyChangedFor(nameof(Labor), nameof(_t10))] Correction k10 = s_Corrections3_4_6[0];
+    public static List<Correction> s_Corrections3_4_6 = new()
     {
         new Correction("Датчики отсутствуют", 0),
         new Correction("Необходим ввод датчиков", 0.1)
     }; // k_10 Наличие / отсутствие датчиков
-    [ObservableProperty, NotifyPropertyChangedFor(nameof(Labor))] Correction k_нов_10;
-    [ObservableProperty, NotifyPropertyChangedFor(nameof(Labor))] bool isT10 = true;
+    [ObservableProperty, NotifyPropertyChangedFor(nameof(Labor), nameof(_t10))] Correction k_нов_10 = s_Corrections3_6[0];
+    [ObservableProperty, NotifyPropertyChangedFor(nameof(Labor), nameof(_t10))] bool isT10 = true;
     #endregion t10
 
     #endregion ti
 
 
-    public static List<Correction> s_Corrections3_6= new()
+    public static List<Correction> s_Corrections3_6 = new()
     {
         new Correction("Полная разработка", 1),
         new Correction("Очень высокий", 0.85),
@@ -180,7 +201,7 @@ public partial class Step03_7 : Step // TODO не выставляются ко�
         new Correction("Не требуется", 0)
     }; // k_нов Коэффициент новизны разработки
 
-    private Correction _stepCorrection; // общий коэффициент новизны работы
+    private Correction _stepCorrection = s_Corrections3_6[0]; // общий коэффициент новизны работы
     public Correction StepCorrection // Reactive
     {
         get => _stepCorrection;

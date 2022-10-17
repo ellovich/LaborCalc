@@ -10,11 +10,11 @@ public partial class Step01 : Step
         return 0;
     }
 
-    public override Report CreateReport()
+    public override string CreateHtmlReport()
     {
         string html = "";
 
-        return new Report(this, html);
+        return html;
     }
 
 

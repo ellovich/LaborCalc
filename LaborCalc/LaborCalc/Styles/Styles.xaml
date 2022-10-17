@@ -17,11 +17,14 @@
             Padding="20"
             Background="#272727">
             <StackPanel Spacing="5">
+
                 <TextBlock Classes="code">int main()</TextBlock>
 
                 <Button Classes="ok">Сохранить</Button>
                 <Button Classes="cancel">Отменить</Button>
                 <Button Classes="add">Добавить</Button>
+                <SplitButton Classes="add">Добавить</SplitButton>
+
 
                 <TextBox
                     Width="300"
@@ -82,8 +85,15 @@
                     Width="300"
                     HorizontalAlignment="Left"
                     Classes="correction"
-                    Items="{x:Static models:Step02.s_Corrections2_9}" />
-                <NumericUpDown Classes="count" Value="{Binding Quantity}" />
+                    Items="{x:Static models:Step02.s_Corrections2_9}"
+                    SelectedIndex="0" />
+
+                <NumericUpDown Classes="count" Value="23.2343" />
+
+                <NumericUpDown Classes="length" Value="23424.236" />
+                <NumericUpDown Classes="length" Value="23424" />
+
+
 
             </StackPanel>
         </Border>
@@ -124,6 +134,16 @@
 
     <Style Selector="NumericUpDown.count">
         <Setter Property="FormatString" Value="N0" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="Minimum" Value="0" />
+        <Setter Property="Maximum" Value="9999999" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="BorderBrush" Value="Gray" />
+    </Style>
+
+    <Style Selector="NumericUpDown.length">
+        <Setter Property="FormatString" Value="0.##" />
         <Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="Minimum" Value="0" />
         <Setter Property="Maximum" Value="9999999" />
@@ -267,6 +287,15 @@
     </Style>
 
     <Style Selector="Button.add:pointerover /template/ ContentPresenter">
+        <Setter Property="Background" Value="#FFC520" />
+    </Style>
+
+
+    <Style Selector="SplitButton.add">
+        <Setter Property="Background" Value="#DAA520" />
+    </Style>
+
+    <Style Selector="SplitButton.add:pointerover /template/ ContentPresenter">
         <Setter Property="Background" Value="#FFC520" />
     </Style>
 

@@ -10,6 +10,14 @@ public partial class MyTable : UserControl
         InitializeComponent();
     }
 
+    public MyTable(string name, Table table)
+    {
+        InitializeComponent();
+
+
+    }
+
+
 
     private void InitializeComponent()
     {

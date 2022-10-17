@@ -2,30 +2,25 @@
 
 public partial class StepsManager : ViewModelBase
 {
-    static bool notLoaded = false;
-
-    public string ProjName { get; set; } = "DEFAULT";
-
-    [ObservableProperty, NotifyPropertyChangedFor(nameof(FullLabor))]
-    TrulyObservableCollection<Step> doneSteps = new();
+    [ObservableProperty, NotifyPropertyChangedFor(nameof(FullLabor))] TrulyObservableCollection<Step> doneSteps = new();
 
     public StepsManager()
     {
-        DoneSteps.CollectionChanged += People_CollectionChanged;
+        //    DoneSteps.CollectionChanged += People_CollectionChanged;
     }
 
     public double FullLabor => Math.Round(DoneSteps.Sum(st => st.Labor), 2);
 
-    private void People_CollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
-    {
-        //Debug.WriteLine("-------------------");
-        //Debug.WriteLine(FullLabor);
+    //private void People_CollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
+    //{
+    //    //Debug.WriteLine("-------------------");
+    //    //Debug.WriteLine(FullLabor);
 
-        //foreach (var item in DoneSteps)
-        //{
-        //    Debug.WriteLine(item);
-        //}
-    }
+    //    //foreach (var item in DoneSteps)
+    //    //{
+    //    //    Debug.WriteLine(item);
+    //    //}
+    //}
 
     //[RelayCommand]
     //public void AddNewStep(int id, string name)
@@ -36,67 +31,42 @@ public partial class StepsManager : ViewModelBase
     //    return step;
     //}
 
-    public void SaveAll()
+
+    public static StepsManager CreateTemplate()
     {
-        string json = JsonConvert.SerializeObject(this);
-        Debug.WriteLine("SAVED");
-
-        using StreamWriter sw = new($"22011.json");
-        sw.WriteLine(json);
-    }
-
-    public static StepsManager? LoadAll()
-    {
-        StepsManager? sm;
-
-        try
+        return new StepsManager()
         {
-            string json = File.ReadAllText($"22011.json");
-            sm = JsonConvert.DeserializeObject<StepsManager>(json);
-
-            if (sm is null) throw new Exception("No steps loaded!");
-        }
-        catch (Exception ex)
-        {
-            Debug.WriteLine(ex);
-            sm = new StepsManager()
+            DoneSteps = new()
             {
-                ProjName = "Проект",
-                DoneSteps = new()
-                {
-                    new Step03_2() {Name = "Формирование ИМ СПО СИП БЖ"},
-                    //new Step01() {Name = "Разработка СПО СИП БЖ"},
-                    //new Step04(),
-                    //new Step06() {Name = "Формирование электронной библиотеки"},
-                    //new Step03_6() {Name = "Разработка протокола сопряжения с внешними  системами" },
-                    //new Step02(),
-                    //new Step14(),
-                    //new Step03_7() {Name = "Корректировка ИМ СПО по результатам кренования и тарировки"},
-                    //new Step11() { Name = "Обучение порядку использования СПО"},
-                    //new Step07(),
-                    //// new Step13(),
-                    //new Step03_8(),
-                    //new Step03_9() { Name = "Отладка инф.-тех. сопряжения СПО с внешними ист. инф-ии" },
+                new Step03_2() { Name = "Формирование ИМ СПО СИП БЖ" },
+                new Step01() { Name = "Разработка СПО СИП БЖ" },
+                new Step04_6() { Name = "Разработка 3D-модели" },
+                new Step06() { Name = "Формирование электронной библиотеки" },
+                new Step03_6() { Name = "Разработка протокола сопряжения с внешними  системами" },
+                new Step02(),
+                new Step14(),
+                new Step03_7() { Name = "Корректировка ИМ СПО по результатам кренования и тарировки" },
+                new Step11() { Name = "Обучение порядку использования СПО" },
+                new Step07(),
+                // new Step13(),
+                new Step03_8(),
+                new Step03_9() { Name = "Отладка инф.-тех. сопряжения СПО с внешними ист. инф-ии" },
 
-                    //////не нужны
-                    //new Step16(),
-                    //new Step09(),
-                    //new Step12(),
-                    //new Step17(),
-                    //new Step18(),
-                },
-            };
-        }
-
-        return sm;
+                ////не нужны
+                new Step16(),
+                new Step09(),
+                new Step12(),
+                new Step17(),
+                new Step18(),
+            }
+        };
     }
-
 
     public static List<(double, string)> s_StepsTemplates { get; } = new List<(double, string)>()
     {
-        (3, "Формирование ИМ СПО СИП БЖ"),
+        (3.2, "Формирование ИМ СПО СИП БЖ"),
         (1, "Разработка СПО СИП БЖ"),
-        (4, "Создание (доработка) 3D моделей корабля/судна"),
+        (4.6, "Создание (доработка) 3D моделей корабля/судна"),
         (6, "Формирование электронной тех. библиотеки интерактивных документов"),
         (3.6, "Разработка протокола сопряжения с внешними системами"),
         (2, "Разработка документации"),

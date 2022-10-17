@@ -10,9 +10,9 @@ public partial class Step12 : Step
         return (K * T) + AddedTables.Sum(t => t.FullLabor);
     }
 
-    public override Report CreateReport()
+    public override string CreateHtmlReport()
     {
-        string algo = $@"
+        string html = $@"
 <p>
     Нормы времени на проведение испытаний рассчитываются по формуле 57: <br>
     T<sub>об</sub> = k * t + T<sub>д</sub>
@@ -24,7 +24,7 @@ public partial class Step12 : Step
     {string.Join("\n", AddedTables.Select(t => t.ToHtml()))}
 ";
 
-        return new Report(this, algo);
+        return html;
     }
 
     public Step12()
@@ -39,8 +39,8 @@ public partial class Step12 : Step
     [ObservableProperty, NotifyPropertyChangedFor(nameof(Labor))] public double t;   // длительность испытаний (ч)
 
     [ObservableProperty, NotifyPropertyChangedFor(nameof(Labor))] public ObservableRangeCollection<Table> addedTables = new ObservableRangeCollection<Table>();
-    public static List<Table> ReadySteps { get; set; } = Step02.ReadyStepsTables;
-    public static List<Table> SingleSteps { get; set; } = Step02.SingleStepsTables;
+    //public static List<Table> ReadySteps { get; set; } = Step02.ReadyStepsTables;
+    //public static List<Table> SingleSteps { get; set; } = Step02.SingleStepsTables;
 
     public static readonly List<Correction> s_Corrections_2_9 = Step02.s_Corrections2_9;
 

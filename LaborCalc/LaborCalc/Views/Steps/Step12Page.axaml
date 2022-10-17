@@ -65,14 +65,13 @@
             DockPanel.Dock="Top"
             Text="{Binding Labor}" />-->
 
-        <Button
+        <!--<Button
             Margin="0,30,0,30"
             HorizontalAlignment="Center"
             Classes="add"
-            Click="AddBigSubstep"
             DockPanel.Dock="Top">
             Добавить документацию
-        </Button>
+        </Button>-->
 
         <Button
             HorizontalAlignment="Center"
