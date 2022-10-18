@@ -17,13 +17,6 @@
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
 
-    <Design.DataContext>
-        <viewModels:MainViewModel />
-    </Design.DataContext>
-    <Window.DataContext>
-        <viewModels:MainViewModel />
-    </Window.DataContext>
-
     <!--
         ExtendClientAreaChromeHints="PreferSystemChrome"
         ExtendClientAreaTitleBarHeightHint="-1"
@@ -84,7 +77,7 @@
         <TextBlock
             Margin="8,8,8,8"
             DockPanel.Dock="Bottom"
-            Text="{Binding Project.StepsManager.FullLabor, StringFormat='Общая трудоёмкость: {0} н/ч', FallbackValue='#ERROR'}"
+            Text="{Binding Project.MethodicsManager.FullLabor, StringFormat='Общая трудоёмкость: {0} н/ч', FallbackValue='#ERROR'}"
             TextAlignment="Right" />
 
         <!--  Content view  -->

@@ -1,0 +1,61 @@
+<UserControl
+    x:Class="LaborCalc.Views.MethodicsManagerPage"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:laborCalc="clr-namespace:LaborCalc"
+    xmlns:controls="clr-namespace:LaborCalc.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:models="clr-namespace:LaborCalc.Models"
+    xmlns:viewModels="clr-namespace:LaborCalc.ViewModels"
+    xmlns:views="clr-namespace:LaborCalc.Views"
+    d:DesignHeight="960"
+    d:DesignWidth="700"
+    mc:Ignorable="d">
+
+    <DockPanel>
+
+        <DataGrid
+            Margin="0,0,0,20"
+            VerticalAlignment="Stretch"
+            Classes="common"
+            DockPanel.Dock="Top"
+            Items="{Binding DoneSteps}">
+
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Width="auto" Header="№">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBox Classes="read" Text="{Binding MethodicId}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Width="*" Header="Наименование работ">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBox Classes="read l" Text="{Binding Name}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Width="auto" Header="Трудоёмкость">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBox Classes="read" Text="{Binding Labor}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Button
+            HorizontalAlignment="Center"
+            Classes="add"
+            Command="{Binding AddNewMethodic}"
+            CommandParameter="{Binding $parent[Window]}"
+            Content="Добавить этап"
+            DockPanel.Dock="Top" />
+
+    </DockPanel>
+</UserControl>

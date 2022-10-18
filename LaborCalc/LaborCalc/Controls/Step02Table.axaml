@@ -1,5 +1,5 @@
 <UserControl
-    x:Class="LaborCalc.Views.Step02Table"
+    x:Class="LaborCalc.Views.Methodic02Table"
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:controls="clr-namespace:LaborCalc.Controls"
@@ -15,7 +15,7 @@
     mc:Ignorable="d">
 
     <UserControl.Styles>
-        <Style Selector="Border.step02style">
+        <Style Selector="Border.methodic02style">
             <Setter Property="Background" Value="#303030" />
             <Setter Property="MinWidth" Value="300" />
             <Setter Property="BorderBrush" Value="#303030" />
@@ -26,7 +26,7 @@
             <Setter Property="CornerRadius" Value="10" />
             <Setter Property="Opacity" Value="0.85" />
         </Style>
-        <Style Selector="Border.step02style:pointerover">
+        <Style Selector="Border.methodic02style:pointerover">
             <Setter Property="Opacity" Value="1" />
         </Style>
     </UserControl.Styles>
@@ -35,7 +35,7 @@
         <helpers:DoubleOutputConverter x:Key="DoubleOut" />
     </UserControl.Resources>
 
-    <Border Padding="15,0,15,0" Classes="step02style">
+    <Border Padding="15,0,15,0" Classes="methodic02style">
 
         <DockPanel>
 
@@ -151,7 +151,7 @@
                             <DataTemplate>
                                 <ComboBox
                                     Classes="correction"
-                                    Items="{x:Static models:Step02.s_Corrections2_9}"
+                                    Items="{x:Static models:Methodic02.s_Corrections2_9}"
                                     SelectedItem="{Binding Correction}">
                                     <ComboBox.ItemTemplate>
                                         <DataTemplate>

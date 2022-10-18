@@ -4,7 +4,6 @@ namespace LaborCalc.Models;
 
 public partial class Item : ViewModelBase, IEntity, IReport
 {
-    public int Id => GetHashCode();
     public double MethodicId { get; set; }
     public string Name { get; }
     public string Measure { get; }
@@ -48,7 +47,6 @@ public partial class Item : ViewModelBase, IEntity, IReport
 
 public partial class Table : ViewModelBase, IEntity, IReport
 {
-    public int Id => GetHashCode();
     public double MethodicId { get; } = 0;
     public string Name { get; set; }
     public ObservableCollection<Item>? TableItems { get; set; }
@@ -58,7 +56,7 @@ public partial class Table : ViewModelBase, IEntity, IReport
     {
         Name = name;
         TableItems = new(tableItems);
-        TableItems.CollectionChanged += (a, b) => { Debug.WriteLine($"CHANGE: {b.Action}"); FullLabor = CalcFullLabor(); };
+    //    TableItems.CollectionChanged += (a, b) => { Debug.WriteLine($"CHANGE: {b.Action} {FullLabor}"); };
 
         for (int i = 0; i < TableItems.Count(); i++)
             TableItems[i].MethodicId = i + 1;
@@ -70,15 +68,14 @@ public partial class Table : ViewModelBase, IEntity, IReport
         MethodicId = methodicId;
         Name = name;
         TableItems = new(tableItems);
-        TableItems.CollectionChanged += (a, b) => { Debug.WriteLine($"CHANGE: {b.Action}"); FullLabor = CalcFullLabor(); };
+    //   TableItems.CollectionChanged += (a, b) => { Debug.WriteLine($"CHANGE: {b.Action} {FullLabor}"); };
 
         for (int i = 0; i < TableItems.Count; i++)
             TableItems[i].MethodicId = i + 1;
     }
 
 
-    public double FullLabor { get; private set; }
-    private double CalcFullLabor() => Math.Round(SelectedItems.Sum(item => item.Labor), 3);
+    public double FullLabor => Math.Round(SelectedItems.Sum(item => item.Labor), 3);
 
     public List<Item> SelectedItems => TableItems.Where(item => item.Quantity != 0).ToList();
 

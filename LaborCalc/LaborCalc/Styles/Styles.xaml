@@ -85,7 +85,7 @@
                     Width="300"
                     HorizontalAlignment="Left"
                     Classes="correction"
-                    Items="{x:Static models:Step02.s_Corrections2_9}"
+                    Items="{x:Static models:Methodic02.s_Corrections2_9}"
                     SelectedIndex="0" />
 
                 <NumericUpDown Classes="count" Value="23.2343" />

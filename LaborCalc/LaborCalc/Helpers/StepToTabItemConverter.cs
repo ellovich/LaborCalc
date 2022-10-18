@@ -4,23 +4,23 @@ using System.Globalization;
 
 namespace LaborCalc.Helpers;
 
-public class StepToTabItemConverter
+public class MethodicToTabItemConverter
 {
-    public static ObservableCollection<TabItem> Convert(TrulyObservableCollection<Step> steps)
+    public static ObservableCollection<TabItem> Convert(TrulyObservableCollection<Methodic> methodics)
     {
-        if (steps is null)
-            throw new Exception("Trying to convert non-step object to step-tab item");
+        if (methodics is null)
+            throw new Exception("Trying to convert non-methodic object to methodic-tab item");
 
         ObservableCollection<TabItem> tabItems = new();
 
-        foreach (var step in steps)
+        foreach (var methodic in methodics)
         {
             var tabItem = new TabItem()
             {
-                //[!TabItem.HeaderProperty] = new Binding(nameof(step.Name)) { Source = step },
-                Header = $"{step.MethodicId.ToString().Replace(',', '.')}  {step.Name}",
-                Content = CreateStepPage(step),
-                [!TabItem.TagProperty] = new Binding(nameof(step.Labor)) { Source = step }
+                //[!TabItem.HeaderProperty] = new Binding(nameof(methodic.Name)) { Source = methodic },
+                Header = $"{methodic.MethodicId.ToString().Replace(',', '.')}  {methodic.Name}",
+                Content = CreateMethodicTemplate(methodic),
+                [!TabItem.TagProperty] = new Binding(nameof(methodic.Labor)) { Source = methodic }
             };
             tabItems.Add(tabItem);
         }
@@ -28,32 +28,32 @@ public class StepToTabItemConverter
         return tabItems;
     }
 
-    public static UserControl CreateStepPage(Step step)
+    public static UserControl CreateMethodicTemplate(Methodic methodic)
     {
-        return step.MethodicId switch
+        return methodic.MethodicId switch
         {
-            1 => new Step01Page(step),
-            2 => new Step02Page(step),
-            3.2 => new Step03_2Page(step),
-            3.6 => new Step03_6Page(step),
-            3.7 => new Step03_7Page(step),
-            3.8 => new Step03_8Page(step),
-            3.9 => new Step03_9Page(step),
-            4.6 => new Step04_6Page(step),
-            5 => new Step05Page(step),
-            6 => new Step06Page(step),
-            7 => new Step07Page(step),
-            8 => new Step08Page(step),
-            9 => new Step09Page(step),
-            10 => new Step10Page(step),
-            11 => new Step11Page(step),
-            12 => new Step12Page(step),
-            13 => new Step13Page(step),
-            14 => new Step14Page(step),
-            15 => new Step15Page(step),
-            16 => new Step16Page(step),
-            17 => new Step17Page(step),
-            18 => new Step18Page(step),
+            1 => new Methodic01Template(methodic),
+            2 => new Methodic02Template(methodic),
+            3.2 => new Methodic03_2Template(methodic),
+            3.6 => new Methodic03_6Template(methodic),
+            3.7 => new Methodic03_7Template(methodic),
+            3.8 => new Methodic03_8Template(methodic),
+            3.9 => new Methodic03_9Template(methodic),
+            4.6 => new Methodic04_6Template(methodic),
+            5 => new Methodic05Template(methodic),
+            6 => new Methodic06Template(methodic),
+            7 => new Methodic07Template(methodic),
+            8 => new Methodic08Template(methodic),
+            9 => new Methodic09Template(methodic),
+            10 => new Methodic10Template(methodic),
+            11 => new Methodic11Template(methodic),
+            12 => new Methodic12Template(methodic),
+            13 => new Methodic13Template(methodic),
+            14 => new Methodic14Template(methodic),
+            15 => new Methodic15Template(methodic),
+            16 => new Methodic16Template(methodic),
+            17 => new Methodic17Template(methodic),
+            18 => new Methodic18Template(methodic),
             _ => throw new Exception(),
         };
     }
@@ -63,25 +63,25 @@ public class StepToTabItemConverter
 
 
 
-//public class StepToTabItemConverter : IValueConverter
+//public class MethodicToTabItemConverter : IValueConverter
 //{
 //    public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
 //    {
-//        var steps = value as TrulyObservableCollection<Step>;
+//        var methodics = value as TrulyObservableCollection<Methodic>;
 
-//        if (steps is null)
-//            throw new Exception("Trying to convert non-step object to step-tab item");
+//        if (methodics is null)
+//            throw new Exception("Trying to convert non-methodic object to methodic-tab item");
 
 //        List<TabItem> tabItems = new List<TabItem>();
 
-//        foreach (var step in steps)
+//        foreach (var methodic in methodics)
 //        {
 //            var tabItem = new TabItem()
 //            {
-//                // [!TabItem.HeaderProperty] = new Binding(nameof(step.Name)) { Source = step },
-//                Header = $"{step.MethodicId.ToString().Replace(',', '.')}  {step.Name}",
-//                Content = CreateStepPage(step),
-//                [!TabItem.TagProperty] = new Binding(nameof(step.Labor)) { Source = step }
+//                // [!TabItem.HeaderProperty] = new Binding(nameof(methodic.Name)) { Source = methodic },
+//                Header = $"{methodic.MethodicId.ToString().Replace(',', '.')}  {methodic.Name}",
+//                Content = CreateMethodicTemplate(methodic),
+//                [!TabItem.TagProperty] = new Binding(nameof(methodic.Labor)) { Source = methodic }
 //            };
 //            tabItems.Add(tabItem);
 //        }
@@ -89,39 +89,39 @@ public class StepToTabItemConverter
 //        //tabItems.Insert(0, new TabItem()
 //        //{
 //        //    Header = "Все этапы",
-//        //    Content = new StepsManagerPage(),
-//        //    [!TabItem.TagProperty] = new Binding(nameof(StepsManager.FullLabor)) { Source = Project.StepsManager }
+//        //    Content = new MethodicsManagerTemplate(),
+//        //    [!TabItem.TagProperty] = new Binding(nameof(MethodicsManager.FullLabor)) { Source = Project.MethodicsManager }
 //        //});
 
 //        return tabItems;
 //    }
 
-//    public static UserControl CreateStepPage(Step step)
+//    public static UserControl CreateMethodicTemplate(Methodic methodic)
 //    {
-//        return step.MethodicId switch
+//        return methodic.MethodicId switch
 //        {
-//            1 => new Step01Page(step),
-//            2 => new Step02Page(step),
-//            3.2 => new Step03_2Page(step),
-//            3.6 => new Step03_6Page(step),
-//            3.7 => new Step03_7Page(step),
-//            3.8 => new Step03_8Page(step),
-//            3.9 => new Step03_9Page(step),
-//            4.6 => new Step04_6Page(step),
-//            5 => new Step05Page(step),
-//            6 => new Step06Page(step),
-//            7 => new Step07Page(step),
-//            8 => new Step08Page(step),
-//            9 => new Step09Page(step),
-//            10 => new Step10Page(step),
-//            11 => new Step11Page(step),
-//            12 => new Step12Page(step),
-//            13 => new Step13Page(step),
-//            14 => new Step14Page(step),
-//            15 => new Step15Page(step),
-//            16 => new Step16Page(step),
-//            17 => new Step17Page(step),
-//            18 => new Step18Page(step),
+//            1 => new Methodic01Template(methodic),
+//            2 => new Methodic02Template(methodic),
+//            3.2 => new Methodic03_2Template(methodic),
+//            3.6 => new Methodic03_6Template(methodic),
+//            3.7 => new Methodic03_7Template(methodic),
+//            3.8 => new Methodic03_8Template(methodic),
+//            3.9 => new Methodic03_9Template(methodic),
+//            4.6 => new Methodic04_6Template(methodic),
+//            5 => new Methodic05Template(methodic),
+//            6 => new Methodic06Template(methodic),
+//            7 => new Methodic07Template(methodic),
+//            8 => new Methodic08Template(methodic),
+//            9 => new Methodic09Template(methodic),
+//            10 => new Methodic10Template(methodic),
+//            11 => new Methodic11Template(methodic),
+//            12 => new Methodic12Template(methodic),
+//            13 => new Methodic13Template(methodic),
+//            14 => new Methodic14Template(methodic),
+//            15 => new Methodic15Template(methodic),
+//            16 => new Methodic16Template(methodic),
+//            17 => new Methodic17Template(methodic),
+//            18 => new Methodic18Template(methodic),
 //            _ => throw new Exception(),
 //        };
 //    }

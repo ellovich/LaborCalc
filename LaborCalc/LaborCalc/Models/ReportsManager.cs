@@ -2,8 +2,11 @@
 
 public class ReportsManager
 {
-    private Project _project { get; set; }
-    private string _path => $"{_project.Location}\\report{_project.Name}";
+    private Project _project { get; set; } 
+    private string _reportPath => $"{_project.Location}\\Пояснительная записка {_project.Name}.html";
+    private string _reportStylePath => $"{_project.Location}\\report_style.css";
+
+
     private List<string> _reports = new();
 
     public ReportsManager(Project project)
@@ -11,24 +14,24 @@ public class ReportsManager
         _project = project;
     }
 
-    public string DesignReport(Step step, string html)
+    public string DesignReport(Methodic methodic, string html)
     {
-        string stepReportHead = $@"
-<h2>{step.Name}</h2>
-<p><i>Расчёт производится в соответствии с пунктом {step.MethodicId.ToString().Replace(",", ".")} - {step.MethodicName}.</i></p>
+        string methodicReportHead = $@"
+<h2>{methodic.Name}</h2>
+<p><i>Расчёт производится в соответствии с пунктом {methodic.MethodicId.ToString().Replace(",", ".")} - {methodic.MethodicName}.</i></p>
 ";
 
-        string stepReportTail = $@"
-<p><b>Итого: {step.Labor.Out()} н/ч</b></p>
+        string methodicReportTail = $@"
+<p><b>Итого: {methodic.Labor.Out()} н/ч</b></p>
 " + "\n";
 
-        return string.Concat(stepReportHead, html, stepReportTail);
+        return string.Concat(methodicReportHead, html, methodicReportTail);
     }
 
-    private string Generate()
+    private string GenerateReport()
     {
-        foreach (var step in _project.StepsManager.DoneSteps)
-            _reports.Add(DesignReport(step, step.CreateHtmlReport()));
+        foreach (var methodic in _project.StepsManager.DoneSteps)
+            _reports.Add(DesignReport(methodic, methodic.CreateHtmlReport()));
 
         return $@"
 <!doctype html>
@@ -52,23 +55,23 @@ public class ReportsManager
     {
         _reports.Clear();
 
-        try
-        {
-            Directory.CreateDirectory(_path);
-            File.Copy("Helpers/report_style.css", _path);
+        Directory.CreateDirectory($"{_project.Location}");
 
-            using (var sw = new StreamWriter(_path, false, System.Text.Encoding.Default))
-            {
-                sw.Write(this.Generate());
-            }
+        if(!File.Exists(_reportStylePath))
+            File.Copy("Helpers/report_style.css", _reportStylePath);
 
-            Debug.WriteLine($"Запись выполнена в {_path}");
+        using (StreamWriter sw = new(_reportPath))
+            sw.WriteLine(GenerateReport());
+        Debug.WriteLine($"Запись выполнена в {_reportPath}");
 
-            var process = new Process();
-            process.StartInfo.UseShellExecute = true;
-            process.StartInfo.FileName = _path;
-            process.Start();
-        }
-        catch (Exception e) { Debug.WriteLine(e.Message); }
+        var process = new Process();
+        process.StartInfo.UseShellExecute = true;
+        process.StartInfo.FileName = _reportPath;
+        process.Start();
+    }
+
+    public override string ToString()
+    {
+        return _project.Name;
     }
 }

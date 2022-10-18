@@ -5,14 +5,14 @@ using MvvmHelpers.Commands;
 
 namespace LaborCalc.Views;
 
-public partial class Step02Table : UserControl
+public partial class Methodic02Table : UserControl
 {
-    private Step02 _step;
+    private Methodic02 _methodic;
     public Table Table { get; private set; }
     public List<MenuItemViewModel> SingleDocsActions { get; set; } = new();
 
 
-    public Step02Table()
+    public Methodic02Table()
     {
         InitializeComponent();
         Table = new Table("DEFAULT", new Item("Что-то 1", "лист А0", 5));
@@ -22,11 +22,11 @@ public partial class Step02Table : UserControl
         InitActions();
     }
 
-    public Step02Table(Step02 step, Table table)
+    public Methodic02Table(Methodic02 methodic, Table table)
     {
         InitializeComponent();
 
-        _step = step;
+        _methodic = methodic;
         Table = table;
         DataContext = this;
 
@@ -54,9 +54,9 @@ public partial class Step02Table : UserControl
     private void InitActions()
     {
 
-        foreach (var item in Step02.SingleDocsTables.SelectMany(t => t.TableItems))
+        foreach (var item in Methodic02.SingleDocsTables.SelectMany(t => t.TableItems))
         {
-            item.Correction = _step.StepCorrection;
+            item.Correction = _methodic.MethodicCorrection;
 
             SingleDocsActions.Add(new MenuItemViewModel
             {
@@ -72,7 +72,7 @@ public partial class Step02Table : UserControl
 
      //   var docsPanel = this.FindControl<StackPanel>("DocsPanel");
 
-        _step.RemoveSuperDoc(Table);
+        _methodic.RemoveSuperDoc(Table);
         docsPanel?.Children.Remove(this);
     }
 }

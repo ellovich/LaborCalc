@@ -1,32 +1,24 @@
-﻿using System.Runtime.Serialization;
+﻿namespace LaborCalc.Models;
 
-namespace LaborCalc.Models;
-
-public class Project
+public class Project : IEntity
 {
-    public int Id => GetHashCode();
-    public string Name { get; set; }
-    public string Location { get; set; }
+    string s_standartLocation =>
+        Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\LaborCalc";
 
+    public Guid Id => Guid.NewGuid();
+    public string Name { get; set; }     // название проекта
+    public string Location { get; set; } // папка с проектом
     public StepsManager StepsManager { get; set; }
+    public ReportsManager ReportsManager { get; set; }      // НЕ СОХРАНЯЕТСЯ ИЗ-ЗА ССЫЛКИ НА СЕБЯ
 
-    [DataMember]
-    public ReportsManager ReportsManager { get; set; }
 
     [JsonConstructor]
-    public Project(string name, string location)
-    {
-        Name = name;
-        Location = location;
-
-        StepsManager = new StepsManager();
-        ReportsManager = new ReportsManager(this);
-    }
+    public Project(int a = 0) { }
 
     public Project()
     {
-        Name = $"LaborCalc_{Id}";
-
+        Name = $"Проект_{Id}";
+        Location = $"{s_standartLocation}\\{Name}";
         StepsManager = StepsManager.CreateTemplate();
         ReportsManager = new ReportsManager(this);
     }
@@ -35,23 +27,15 @@ public class Project
     public async void SaveToJson()
     {
         string json = JsonConvert.SerializeObject(
-            this, 
-            new JsonSerializerSettings() { Formatting = Formatting.Indented, // ObjectCreationHandling = ObjectCreationHandling.Replace,
+            this,
+            new JsonSerializerSettings()
+            {
+                Formatting = Formatting.Indented,
             }
         );
 
-        if (Location is null)
-        {
-            string standartLocation = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\LaborCalc";
-            Directory.CreateDirectory(standartLocation);
-            await File.WriteAllTextAsync($"{standartLocation}\\{Name}.labor", json);
-            Debug.WriteLine($"Saved to: {standartLocation}");
-        }
-        else 
-        {
-            await File.WriteAllTextAsync($"{Location}", json);
-            Debug.WriteLine($"Saved to: {Location}");
-        }
+        Directory.CreateDirectory(Location);
+        await File.WriteAllTextAsync($"{Location}\\{Name}.labor", json);
     }
 
     public static Project LoadFromJson(string path)
@@ -61,12 +45,21 @@ public class Project
             string json = File.ReadAllText(path);
             var p = JsonConvert.DeserializeObject<Project>(json);
 
+            if (p != null)
+            {
+                p.Location = Path.GetDirectoryName(path);
+                p.Name = Path.GetFileNameWithoutExtension(path);
+            }
+            else
+            {
+                throw new Exception($"Ошибка чтения файла {path}");
+            }
+
             return p;
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
-            Debug.WriteLine(ex, "ERROR");
-            return new Project();
+            throw new Exception($"Ошибка чтения файла {path}");
         }
     }
 }

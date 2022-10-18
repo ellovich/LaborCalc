@@ -10,13 +10,13 @@
 	</ItemGroup>
 	<ItemGroup>
 		<AvaloniaXaml Remove="Converters\**" />
-		<AvaloniaXaml Remove="Models\Steps\**" />
+		<AvaloniaXaml Remove="ViewModels\Methodics\**" />
 		<Compile Remove="Converters\**" />
-		<Compile Remove="Models\Steps\**" />
+		<Compile Remove="ViewModels\Methodics\**" />
 		<EmbeddedResource Remove="Converters\**" />
-		<EmbeddedResource Remove="Models\Steps\**" />
+		<EmbeddedResource Remove="ViewModels\Methodics\**" />
 		<None Remove="Converters\**" />
-		<None Remove="Models\Steps\**" />
+		<None Remove="ViewModels\Methodics\**" />
 	</ItemGroup>
 	<ItemGroup>
 		<EmbeddedResource Remove="Assets\Resource.resx" />
@@ -37,31 +37,6 @@
 	  <AvaloniaResource Include="Styles\Styles.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </AvaloniaResource>
-	</ItemGroup>
-	<ItemGroup>
-		<Compile Include="Models\Steps\depr\done\Step09.cs" />
-		<Compile Include="Models\Steps\needed\Step16.cs" />
-		<Compile Include="Models\Steps\depr\done\Step17.cs" />
-		<Compile Include="Models\Steps\depr\done\Step18.cs" />
-		<Compile Include="Models\Steps\depr\Step05.cs" />
-		<Compile Include="Models\Steps\depr\Step08.cs" />
-		<Compile Include="Models\Steps\depr\Step10.cs" />
-		<Compile Include="Models\Steps\depr\Step12.cs" />
-		<Compile Include="Models\Steps\depr\Step15.cs" />
-		<Compile Include="Models\Steps\needed\Step01.cs" />
-		<Compile Include="Models\Steps\needed\Step02.cs" />
-		<Compile Include="Models\Steps\needed\Step03_2.cs" />
-		<Compile Include="Models\Steps\needed\Step03_9.cs" />
-		<Compile Include="Models\Steps\needed\Step03_8.cs" />
-		<Compile Include="Models\Steps\needed\Step03_7.cs" />
-		<Compile Include="Models\Steps\needed\Step04_6.cs" />
-		<Compile Include="Models\Steps\needed\Step06.cs" />
-		<Compile Include="Models\Steps\needed\Step03_6.cs" />
-		<Compile Include="Models\Steps\needed\Step07.cs" />
-		<Compile Include="Models\Steps\needed\Step11.cs" />
-		<Compile Include="Models\Steps\needed\Step13.cs" />
-		<Compile Include="Models\Steps\needed\Step14.cs" />
-		<Compile Include="Models\Steps\Step.cs" />
 	</ItemGroup>
 	<ItemGroup>
 		<PackageReference Include="Avalonia" Version="11.0.0-preview2" />
@@ -92,52 +67,52 @@
 	    <AutoGen>True</AutoGen>
 	    <DependentUpon>Resource.resx</DependentUpon>
 	  </Compile>
-	  <Compile Update="Views\Steps\Step04_6Page.axaml.cs">
-	    <DependentUpon>Step04_6Page.axaml</DependentUpon>
+	  <Compile Update="Views\MethodicPage.axaml.cs">
+	    <DependentUpon>MethodicPage.axaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="Views\Steps\Step15Page.axaml.cs">
-	    <DependentUpon>Step15Page.axaml</DependentUpon>
+	  <Compile Update="Views\Methodics\Methodic04_6Page.axaml.cs">
+	    <DependentUpon>Methodic04_6Page.axaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="Views\Steps\Step10Page.axaml.cs">
-	    <DependentUpon>Step10Page.axaml</DependentUpon>
+	  <Compile Update="Views\Methodics\Methodic15Page.axaml.cs">
+	    <DependentUpon>Methodic15Page.axaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="Views\Steps\Step13Page.axaml.cs">
-	    <DependentUpon>Step13Page.axaml</DependentUpon>
+	  <Compile Update="Views\Methodics\Methodic10Page.axaml.cs">
+	    <DependentUpon>Methodic10Page.axaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="Views\Steps\Step08Page.axaml.cs">
-	    <DependentUpon>Step08Page.axaml</DependentUpon>
+	  <Compile Update="Views\Methodics\Methodic13Page.axaml.cs">
+	    <DependentUpon>Methodic13Page.axaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="Views\Steps\Step05Page.axaml.cs">
-	    <DependentUpon>Step05Page.axaml</DependentUpon>
+	  <Compile Update="Views\Methodics\Methodic08Page.axaml.cs">
+	    <DependentUpon>Methodic08Page.axaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="Views\Steps\Step03_2Page.axaml.cs">
-	    <DependentUpon>Step03_2Page.axaml</DependentUpon>
+	  <Compile Update="Views\Methodics\Methodic05Page.axaml.cs">
+	    <DependentUpon>Methodic05Page.axaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="Views\Steps\Step03_9Page.axaml.cs">
-	    <DependentUpon>Step03_9Page.axaml</DependentUpon>
+	  <Compile Update="Views\Methodics\Methodic03_2Page.axaml.cs">
+	    <DependentUpon>Methodic03_2Page.axaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="Views\Steps\Step03_8Page.axaml.cs">
-	    <DependentUpon>Step03_8Page.axaml</DependentUpon>
+	  <Compile Update="Views\Methodics\Methodic03_9Page.axaml.cs">
+	    <DependentUpon>Methodic03_9Page.axaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="Views\Steps\Step03_7Page.axaml.cs">
-	    <DependentUpon>Step03_7Page.axaml</DependentUpon>
+	  <Compile Update="Views\Methodics\Methodic03_8Page.axaml.cs">
+	    <DependentUpon>Methodic03_8Page.axaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="Views\Steps\Step03_6Page.axaml.cs">
-	    <DependentUpon>Step03_6Page.axaml</DependentUpon>
+	  <Compile Update="Views\Methodics\Methodic03_7Page.axaml.cs">
+	    <DependentUpon>Methodic03_7Page.axaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="Views\Steps\Step01Page.axaml.cs">
-	    <DependentUpon>Step01Page.axaml</DependentUpon>
+	  <Compile Update="Views\Methodics\Methodic03_6Page.axaml.cs">
+	    <DependentUpon>Methodic03_6Page.axaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="Views\Steps\StepsManagerPage.axaml.cs">
-	    <DependentUpon>StepsManagerPage.axaml</DependentUpon>
+	  <Compile Update="Views\Methodics\Methodic01Page.axaml.cs">
+	    <DependentUpon>Methodic01Page.axaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\Methodics\MethodicsManagerPage.axaml.cs">
+	    <DependentUpon>MethodicsManagerPage.axaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 	<ItemGroup>
 	  <None Update="Helpers\report_style.css">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>
-	</ItemGroup>
-	<ItemGroup>
-	  <Folder Include="ViewModels\Steps\" />
 	</ItemGroup>
 </Project>

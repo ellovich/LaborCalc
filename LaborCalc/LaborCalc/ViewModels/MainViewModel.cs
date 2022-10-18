@@ -15,19 +15,19 @@ public partial class MainViewModel : ViewModelBase
         LoadTabs();
     }
 
-    public MainViewModel()
-    {
-        Project = new();
-        LoadTabs();
-    }
+    //public MainViewModel()
+    //{
+    //    Project = new();
+    //    LoadTabs();
+    //}
 
     private void LoadTabs()
     {
-        Tabs = StepToTabItemConverter.Convert(Project.StepsManager.DoneSteps);
+        Tabs = MethodicToTabItemConverter.Convert(Project.StepsManager.DoneSteps);
         Tabs.Insert(0, new TabItem()
         {
             Header = "Все этапы",
-            Content = new StepsManagerPage(Project.StepsManager),
+            Content = new MethodicsManagerPage(Project.StepsManager),
             [!TabItem.TagProperty] = new Binding(nameof(Project.StepsManager.FullLabor)) { Source = Project.StepsManager }
         });
     }

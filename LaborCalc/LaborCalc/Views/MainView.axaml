@@ -12,7 +12,7 @@
     mc:Ignorable="d">
 
     <UserControl.Resources>
-        <helpers:StepToTabItemConverter x:Key="StepToTabItem" />
+        <helpers:MethodicToTabItemConverter x:Key="MethodicToTabItem" />
     </UserControl.Resources>
 
     <Design.DataContext>
@@ -40,7 +40,7 @@
         Name="TabControl"
         Classes="normal"
         Foreground="White"
-        Items="{Binding Project.StepsManager.DoneSteps, Converter={StaticResource StepToTabItem}}">
+        Items="{Binding Project.MethodicsManager.DoneSteps, Converter={StaticResource MethodicToTabItem}}">
 
 		--><!--<FlyoutBase.AttachedFlyout>
             <Flyout>

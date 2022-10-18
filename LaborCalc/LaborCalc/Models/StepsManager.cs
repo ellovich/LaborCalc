@@ -2,7 +2,8 @@
 
 public partial class StepsManager : ViewModelBase
 {
-    [ObservableProperty, NotifyPropertyChangedFor(nameof(FullLabor))] TrulyObservableCollection<Step> doneSteps = new();
+    [ObservableProperty, NotifyPropertyChangedFor(nameof(FullLabor))] 
+        TrulyObservableCollection<Methodic> doneSteps = new();
 
     public StepsManager()
     {
@@ -23,12 +24,12 @@ public partial class StepsManager : ViewModelBase
     //}
 
     //[RelayCommand]
-    //public void AddNewStep(int id, string name)
+    //public void AddNewMethodic(int id, string name)
     //{
-    //    var step = Step.Create(id, name);
-    //    Instance.DoneSteps.Add(step);
+    //    var methodic = Methodic.Create(id, name);
+    //    Instance.DoneSteps.Add(methodic);
 
-    //    return step;
+    //    return methodic;
     //}
 
 
@@ -38,31 +39,31 @@ public partial class StepsManager : ViewModelBase
         {
             DoneSteps = new()
             {
-                new Step03_2() { Name = "Формирование ИМ СПО СИП БЖ" },
-                new Step01() { Name = "Разработка СПО СИП БЖ" },
-                new Step04_6() { Name = "Разработка 3D-модели" },
-                new Step06() { Name = "Формирование электронной библиотеки" },
-                new Step03_6() { Name = "Разработка протокола сопряжения с внешними  системами" },
-                new Step02(),
-                new Step14(),
-                new Step03_7() { Name = "Корректировка ИМ СПО по результатам кренования и тарировки" },
-                new Step11() { Name = "Обучение порядку использования СПО" },
-                new Step07(),
-                // new Step13(),
-                new Step03_8(),
-                new Step03_9() { Name = "Отладка инф.-тех. сопряжения СПО с внешними ист. инф-ии" },
+                new Methodic03_2() { Name = "Формирование ИМ СПО СИП БЖ" },
+                new Methodic01() { Name = "Разработка СПО СИП БЖ" },
+                new Methodic04_6() { Name = "Разработка 3D-модели" },
+                new Methodic06() { Name = "Формирование электронной библиотеки" },
+                new Methodic03_6() { Name = "Разработка протокола сопряжения с внешними  системами" },
+                new Methodic02(),
+                new Methodic14(),
+                new Methodic03_7() { Name = "Корректировка ИМ СПО по результатам кренования и тарировки" },
+                new Methodic11() { Name = "Обучение порядку использования СПО" },
+                new Methodic07(),
+                // new Methodic13(),
+                new Methodic03_8(),
+                new Methodic03_9() { Name = "Отладка инф.-тех. сопряжения СПО с внешними ист. инф-ии" },
 
                 ////не нужны
-                new Step16(),
-                new Step09(),
-                new Step12(),
-                new Step17(),
-                new Step18(),
+                new Methodic16(),
+                new Methodic09(),
+                new Methodic12(),
+                new Methodic17(),
+                new Methodic18(),
             }
         };
     }
 
-    public static List<(double, string)> s_StepsTemplates { get; } = new List<(double, string)>()
+    public static List<(double, string)> s_MethodicsTemplates { get; } = new List<(double, string)>()
     {
         (3.2, "Формирование ИМ СПО СИП БЖ"),
         (1, "Разработка СПО СИП БЖ"),

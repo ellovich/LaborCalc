@@ -2,5 +2,5 @@
 
 public interface IEntity
 {
-    public int Id { get; }
+    public Guid Id => Guid.NewGuid();
 }

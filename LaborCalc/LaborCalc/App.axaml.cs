@@ -15,15 +15,8 @@ namespace LaborCalc
 
         public override void OnFrameworkInitializationCompleted()
         {
-            Project project;
 
             string[] args = Environment.GetCommandLineArgs();
-
-
-
-
-
-
 
             args = new string[]
             {
@@ -32,18 +25,12 @@ namespace LaborCalc
             };
 
 
-
-
-
-
-
+            Project project;
 
             if (args != null && args.Length > 1)
             {
                 project = Project.LoadFromJson(args[1]);
-                if (project == null)
-                    project = new();
-                project.Location = args[1]; // updating location
+                project.ReportsManager = new(project); // создается из-за зацикливания
             }
             else
             {

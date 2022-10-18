@@ -1,0 +1,29 @@
+<UserControl
+    x:Class="LaborCalc.Views.Methodic08Template"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:laborCalc="clr-namespace:LaborCalc"
+    xmlns:controls="clr-namespace:LaborCalc.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:models="clr-namespace:LaborCalc.Models"
+    xmlns:viewModels="clr-namespace:LaborCalc.ViewModels"
+    xmlns:views="clr-namespace:LaborCalc.Views"
+    d:DesignHeight="960"
+    d:DesignWidth="700"
+    mc:Ignorable="d">
+
+    <DockPanel>
+
+
+
+        <Button
+            HorizontalAlignment="Center"
+            VerticalAlignment="Bottom"
+            Classes="cancel"
+            Command="{Binding DeleteMethodicCommand}"
+            Content="Удалить этап"
+            DockPanel.Dock="Bottom" />
+
+    </DockPanel>
+</UserControl>
