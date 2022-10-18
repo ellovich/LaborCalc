@@ -39,13 +39,7 @@ public partial class Step06 : Step
 
     public Step06()
     {
-        //this.WhenAnyValue(
-        //    x => x.N_д,
-        //    x => x.N_рис,
-        //    x => x.N_лтаб,
-        //    x => x.N_чс,
-        //    x => x.N_д,
-        //    x => x.Correction).Subscribe((_) => CalcLabor());
+
     }
 
 
@@ -72,6 +66,8 @@ public partial class Step06 : Step
     private const double _q_html = 1.0;    // перевод материалов в HTML-документ (1 лист)
     private const double _q_п = 0.2;       // чертеж детали (1 документ)
 
+    #region CORRECTION
+
     public static readonly List<Correction> s_Corrections_6_2 = new()
     {
         new Correction("Полная разработка", 1),
@@ -81,6 +77,8 @@ public partial class Step06 : Step
         new Correction("Низкая", 0.3),
         new Correction("Очень низкая", 0.15),
     };
+
+    #endregion CORRECTION
 
     #endregion DATA
 }

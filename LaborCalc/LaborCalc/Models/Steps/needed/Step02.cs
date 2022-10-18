@@ -58,7 +58,7 @@ public partial class Step02 : Step
     [ObservableProperty, NotifyPropertyChangedFor(nameof(Labor))] TrulyObservableCollection<Table> addedSuperDocs = new();
 
 
-    #region TABLES
+    #region STATIC TABLES
 
     private static readonly Table s_T_2_1 = new(2.1, "Нормы времени на разработку чертежей",
         new Item("Габаритный чертеж", "Лист А4", 9.9),
@@ -159,15 +159,15 @@ public partial class Step02 : Step
         new Item("Форма результата интеллектуальной деятельности", "Лист А4", 0.3)
     );
 
-    #endregion
-
+    #endregion STATIC TABLES
 
     public static List<Table> ReadyDocsTables { get; } = new() { s_T_2_1, s_T_2_2, s_T_2_3, s_T_2_6, s_T_2_8 };
     public static List<Table> SingleDocsTables { get; } = new() { s_T_2_4, s_T_2_5, s_T_2_7 };
 
-    [JsonIgnore]
-    public List<MenuItemViewModel> ReadyDocsActions { get; set; } = new();
 
+    [JsonIgnore] public List<MenuItemViewModel> ReadyDocsActions { get; set; } = new();
+
+    #region CORRECTION
 
     public static readonly List<Correction> s_Corrections2_9 = new()
     {
@@ -190,6 +190,7 @@ public partial class Step02 : Step
         }
     }
 
+    #endregion CORRECTION
 
     #endregion DATA
 }

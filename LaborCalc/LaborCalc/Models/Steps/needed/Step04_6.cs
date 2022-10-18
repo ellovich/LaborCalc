@@ -222,6 +222,8 @@ k<sub>ВР</sub> = 0.2 ⋅ n<sub>пал</sub> + 0.01 ⋅ n<sub>пом</sub> = 0.
     #endregion
 
 
+    #region CORRECTION
+
     public static readonly List<Correction> s_Corrections4_8 = new()
     {
         new Correction("Полная разработка", 1),
@@ -246,6 +248,8 @@ k<sub>ВР</sub> = 0.2 ⋅ n<sub>пал</sub> + 0.01 ⋅ n<sub>пом</sub> = 0.
             this.SetProperty(ref _stepCorrection, value);
         }
     }
+
+    #endregion CORRECTION
 
     #endregion DATA
 }

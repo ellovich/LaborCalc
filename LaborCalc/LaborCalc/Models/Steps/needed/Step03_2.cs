@@ -626,6 +626,8 @@ $@"
     #endregion ПОЖАРЫ И ВОДА _T_БЖ
 
 
+    #region CORRECTION
+
     public static List<Correction> s_Corrections3_6 = new()
     {
         new Correction("Полная разработка", 1),
@@ -652,6 +654,8 @@ $@"
             this.SetProperty(ref _stepCorrection, value);
         }
     }
+
+    #endregion CORRECTION
 
     #endregion DATA
 }

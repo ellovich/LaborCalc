@@ -20,25 +20,25 @@ public abstract partial class Step : ViewModelBase, IEntity
     public abstract string CreateHtmlReport();
 
 
-    [RelayCommand]
-    void DeleteStep()
-    {
-        // var messageBoxCustomWindow = MessageBox.Avalonia.MessageBoxManager
-        //                .GetMessageBoxCustomWindow(new MessageBoxCustomParams
-        //                {
-        //                    Style = Style.UbuntuLinux,
-        //                    ContentMessage = "支持FontFamily",
-        //                    FontFamily = "Microsoft YaHei,Simsun",
-        //                    ButtonDefinitions = new[] {
-        //                 new ButtonDefinition {Name = "My"},
-        //                 new ButtonDefinition {Name = "Buttons", Type = ButtonType.Colored}
-        //                    },
-        //                    WindowStartupLocation = WindowStartupLocation.CenterOwner
-        //                });
-        // messageBoxCustomWindow.Show();
+    //[RelayCommand]
+    //void DeleteStep()
+    //{
+    //    // var messageBoxCustomWindow = MessageBox.Avalonia.MessageBoxManager
+    //    //                .GetMessageBoxCustomWindow(new MessageBoxCustomParams
+    //    //                {
+    //    //                    Style = Style.UbuntuLinux,
+    //    //                    ContentMessage = "支持FontFamily",
+    //    //                    FontFamily = "Microsoft YaHei,Simsun",
+    //    //                    ButtonDefinitions = new[] {
+    //    //                 new ButtonDefinition {Name = "My"},
+    //    //                 new ButtonDefinition {Name = "Buttons", Type = ButtonType.Colored}
+    //    //                    },
+    //    //                    WindowStartupLocation = WindowStartupLocation.CenterOwner
+    //    //                });
+    //    // messageBoxCustomWindow.Show();
 
-        // Project.StepsManager.DoneSteps.Remove(this);
-    }
+    //    // Project.StepsManager.DoneSteps.Remove(this);
+    //}
 
     //public void Serialize()
     //{

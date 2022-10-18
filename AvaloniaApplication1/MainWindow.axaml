@@ -11,27 +11,18 @@
     d:DesignWidth="500"
     mc:Ignorable="d">
 
-	<Window.Styles>
-		
-	</Window.Styles>
-	
+    <Window.DataContext>
+        <ap:MainViewModel />
+    </Window.DataContext>
     <Design.DataContext>
-        <ap:MainWindow />
+        <ap:MainViewModel />
     </Design.DataContext>
 
     <DockPanel>
 
-        <ComboBox
-            Classes="correction"
-            DockPanel.Dock="Top"
-            Items="{x:Static models:Person.ListOfGenders}"
-            SelectedItem="{Binding me.Gender}" />
+		<TreeDataGrid Source="{Binding Source}"/>
 
-        <Button
-            Command="{Binding me.SaveAllCommand}"
-            Content="SAVE"
-            DockPanel.Dock="Bottom" />
+	</DockPanel>
 
-    </DockPanel>
 
 </Window>

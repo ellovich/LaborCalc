@@ -34,7 +34,11 @@ public class Project
 
     public async void SaveToJson()
     {
-        string json = JsonConvert.SerializeObject(this);
+        string json = JsonConvert.SerializeObject(
+            this, 
+            new JsonSerializerSettings() { Formatting = Formatting.Indented, // ObjectCreationHandling = ObjectCreationHandling.Replace,
+            }
+        );
 
         if (Location is null)
         {

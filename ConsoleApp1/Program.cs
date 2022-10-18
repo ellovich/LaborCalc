@@ -1,50 +1,62 @@
-﻿//using (ApplicationContext db = new ApplicationContext())
-//{
-//    // создаем два объекта User
-//    User tom = new User { Name = "Tom", Age = 33 };
-//    User alice = new User { Name = "Alice", Age = 26 };
+﻿using Newtonsoft.Json;
 
-//    // добавляем их в бд
-//    db.Users.Add(tom);
-//    db.Users.Add(alice);
-//    db.SaveChanges();
-//    Console.WriteLine("Объекты успешно сохранены");
+namespace ConsoleApp1;
 
-//    // получаем объекты из бд и выводим на консоль
-//    var users = db.Users.ToList();
-//    Console.WriteLine("Список объектов:");
-//    foreach (User u in users)
-//    {
-//        Console.WriteLine($"{u.Id}.{u.Name} - {u.Age}");
-//    }
-//}
-
-using Newtonsoft.Json;
-
-public class Product
+public class Project
 {
-    public static string s_file = "product.json";
+    public static string s_Path
+        => Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "\\project.json";
 
-    public string Name { get; set; }
-    public DateTime ExpiryDate { get; set; }
-    public double Price { get; set; }
-    public string[] Sizes { get; set; }
+    public Table T { get; set; }
 
-    public void Load()
+    static int i = 0; // счетчик вызова конструктора
+    public Project()
     {
-        // this = JsonConvert.DeserializeObject<Product>(s_file);
+        Console.WriteLine($"###############################>{++i} вызов Product");
+
+        T = new Table("Нормы времени на оформление отчетных материалов",
+            new List<Item>()
+            {
+                new Item("Создание презентации", 7.0),
+                new Item("Создание демонстрационного видеоролика", 4.5),
+                new Item("Создание электронного носителя", 4.4),
+                new Item("Маркировка электронного носителя", 2.2)
+            });
     }
+
 
     public void Save()
     {
-        string output = JsonConvert.SerializeObject(this);
-        using (StreamWriter sw = new StreamWriter(s_file))
+        JsonSerializerSettings settings = new()
+        {
+            ObjectCreationHandling = ObjectCreationHandling.Replace, // не влияет
+            Formatting = Formatting.Indented,
+        };
+
+        string output = JsonConvert.SerializeObject(this, settings);
+        using (StreamWriter sw = new(s_Path))
             sw.WriteLine(output);
+
+        Console.ForegroundColor = ConsoleColor.Yellow;
+        Console.WriteLine($"\nSaved to: {s_Path}\n");
+        Console.ForegroundColor = ConsoleColor.White;
+    }
+
+    public static Project Load()
+    {
+        string json = File.ReadAllText(s_Path);
+        var desPm = JsonConvert.DeserializeObject<Project>(json);
+
+        Console.ForegroundColor = ConsoleColor.Yellow;
+        Console.WriteLine($"\nLoaded from: {s_Path}\n");
+        Console.ForegroundColor = ConsoleColor.White;
+
+        return desPm;
     }
 
     public override string ToString()
     {
-        return Name;
+        return $"{T}";
     }
 }
 
@@ -52,17 +64,21 @@ class Program
 {
     public static void Main()
     {
+        File.Delete(Project.s_Path);
 
-        Product product = new Product();
+        Project p = new();
+        Console.WriteLine("После создания:\n" + p + "\n");
 
-        product.Name = "Apple";
-        product.ExpiryDate = new DateTime(2008, 12, 28);
-        product.Price = 3.99;
-        product.Sizes = new string[] { "Small", "Medium", "Large" };
+        p.T.TableItems[0].Val = 99999999;
 
-        product.Save();
+        // сохраняю созданный объект
+        p.Save();
 
-        Product deserializedProduct = JsonConvert.DeserializeObject<Product>(Product.s_file);
-        Console.WriteLine(deserializedProduct);
+        // загружаю сохраненный объект, !!! создаются дубликаты !!!
+        var p2 = Project.Load();
+        Console.WriteLine("После загрузки:\n" + p2 + "\n");
+
+        // сохраняю, чтобы проверить, что в json-е дубликаты
+        p2.Save();
     }
 }

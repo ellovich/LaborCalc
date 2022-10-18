@@ -35,10 +35,7 @@ public partial class Step11 : Step
 
     public Step11()
     {
-        //this.WhenAnyValue(
-        //    x => x.N_зан,
-        //    x => x.N_экз,
-        //    x => x.Correction).Subscribe((_) => CalcLabor());
+
     }
 
 
@@ -54,12 +51,12 @@ public partial class Step11 : Step
     private double _T_экз => N_экз * (_q_пэ + _q_экз);      // (ф.48, п.11.5, c.76) // трудоемкости подготовки и проведения экзамена (зачёта)
 
     // т.11-1 (c.74)
-    private readonly double _q_уп = 1.6; // разработка учебной программы
-    private readonly double _q_тп = 0.8; // разработка тематического плана
-    private readonly double _q_умм = 32; // разработка учебно-методических материалов
-    private readonly double _q_пз = 2;   // подготовка к проведению двухчасового занятия
-    private readonly double _q_пэ = 4;   // подготовка к проведению экзамена/зачёта
-    private readonly double _q_экз = 4;  // проведение экзамена/зачёта
+    private const double _q_уп = 1.6; // разработка учебной программы
+    private const double _q_тп = 0.8; // разработка тематического плана
+    private const double _q_умм = 32; // разработка учебно-методических материалов
+    private const double _q_пз = 2;   // подготовка к проведению двухчасового занятия
+    private const double _q_пэ = 4;   // подготовка к проведению экзамена/зачёта
+    private const double _q_экз = 4;  // проведение экзамена/зачёта
 
     public static readonly List<Correction> s_Corrections11_2 = new()
     {

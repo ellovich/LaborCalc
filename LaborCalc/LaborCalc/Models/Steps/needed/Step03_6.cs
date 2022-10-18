@@ -32,7 +32,7 @@ public partial class Step03_6 : Step // TODO нужна ли корректир�
 
     [ObservableProperty, NotifyPropertyChangedFor(nameof(Labor))] int protocols;
 
-    private double _norm = 56;
+    private const double _norm = 56;
 
     #endregion DATA
 }

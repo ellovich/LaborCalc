@@ -34,7 +34,7 @@ public partial class Step03_8 : Step // TODO нужна ли корректир�
 
     [ObservableProperty, NotifyPropertyChangedFor(nameof(Labor))] int n_ср;
 
-    private double _q_ср = 0.5;
+    private const double _q_ср = 0.5;
 
     #endregion DATA
 }

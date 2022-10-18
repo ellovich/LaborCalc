@@ -103,7 +103,6 @@ public partial class Step03_7 : Step // TODO не выставляются ко�
 
     #region DATA
 
-
     #region ti
 
     #region t1
@@ -190,6 +189,8 @@ public partial class Step03_7 : Step // TODO не выставляются ко�
     #endregion ti
 
 
+    #region CORRECTION
+
     public static List<Correction> s_Corrections3_6 = new()
     {
         new Correction("Полная разработка", 1),
@@ -211,6 +212,8 @@ public partial class Step03_7 : Step // TODO не выставляются ко�
             this.SetProperty(ref _stepCorrection, value);
         }
     }
+
+    #endregion CORRECTION
 
     #endregion DATA
 }

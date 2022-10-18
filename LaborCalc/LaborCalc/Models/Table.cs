@@ -1,5 +1,4 @@
-﻿using MvvmHelpers.Commands;
-using System.Runtime.Serialization;
+﻿using JsonConstructorAttribute = Newtonsoft.Json.JsonConstructorAttribute;
 
 namespace LaborCalc.Models;
 
@@ -52,44 +51,45 @@ public partial class Table : ViewModelBase, IEntity, IReport
     public int Id => GetHashCode();
     public double MethodicId { get; } = 0;
     public string Name { get; set; }
-
-    [ObservableProperty, NotifyPropertyChangedFor(nameof(FullLabor))] ObservableRangeCollection<Item>? tableItems;
+    public ObservableCollection<Item>? TableItems { get; set; }
 
 
     public Table(string name, params Item[] tableItems)
     {
         Name = name;
         TableItems = new(tableItems);
+        TableItems.CollectionChanged += (a, b) => { Debug.WriteLine($"CHANGE: {b.Action}"); FullLabor = CalcFullLabor(); };
 
         for (int i = 0; i < TableItems.Count(); i++)
             TableItems[i].MethodicId = i + 1;
     }
 
+    [JsonConstructor]
     public Table(double methodicId, string name, params Item[] tableItems)
     {
         MethodicId = methodicId;
         Name = name;
         TableItems = new(tableItems);
+        TableItems.CollectionChanged += (a, b) => { Debug.WriteLine($"CHANGE: {b.Action}"); FullLabor = CalcFullLabor(); };
 
         for (int i = 0; i < TableItems.Count; i++)
             TableItems[i].MethodicId = i + 1;
     }
 
 
+    public double FullLabor { get; private set; }
+    private double CalcFullLabor() => Math.Round(SelectedItems.Sum(item => item.Labor), 3);
+
     public List<Item> SelectedItems => TableItems.Where(item => item.Quantity != 0).ToList();
 
-    public double FullLabor => Math.Round(SelectedItems.Sum(item => item.Labor), 3);
 
-    bool _isCustom => (MethodicId == 0);
-
-    [RelayCommand] public void RemoveItem(Item item) { TableItems?.Remove(item); }
+   // [RelayCommand] public void RemoveItem(Item item) { TableItems?.Remove(item); }
 
     public void AddItem(Item item) => TableItems?.Add(item);
 
-
     public string ToHtml()
     {
-        var caption = _isCustom ? $"{Name}" : $"{MethodicId.ToString().Replace(',', '-')}. {Name}";
+        var caption = (MethodicId == 0) ? $"{Name}" : $"{MethodicId.ToString().Replace(',', '-')}. {Name}";
 
         return $@"
 <table>
