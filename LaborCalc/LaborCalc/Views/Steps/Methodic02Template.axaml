@@ -10,26 +10,24 @@
     xmlns:viewModels="clr-namespace:LaborCalc.ViewModels"
     xmlns:views="clr-namespace:LaborCalc.Views"
     d:DesignHeight="960"
-    d:DesignWidth="680"
+    d:DesignWidth="700"
     mc:Ignorable="d">
 
     <DockPanel>
 
         <Grid
-			Margin="0,0,0,20"
-            MaxWidth="900"
+            Margin="0,0,0,20"
             HorizontalAlignment="Left"
             ColumnDefinitions="*, *"
             DockPanel.Dock="Top">
             <StackPanel
                 Grid.Column="0"
-                Margin="10"
                 VerticalAlignment="Center"
                 Orientation="Horizontal">
                 <TextBlock Text="Общий коэффициент новизны работы " />
                 <TextBlock Text="k" />
                 <TextBlock Classes="sub" Text="нов" />
-                <TextBlock Text=" :" />
+                <TextBlock Text=" : " />
             </StackPanel>
             <ComboBox
                 Grid.Column="1"
@@ -53,6 +51,7 @@
             Spacing="20">
 
             <DataGrid
+                MaxHeight="10000"
                 Classes="common"
                 DockPanel.Dock="Top"
                 Items="{Binding AddedReadyDocs}">
@@ -172,14 +171,6 @@
             Click="AddSuperDoc_Click"
             Content="Составной документ"
             DockPanel.Dock="Top" />
-
-        <Button
-            HorizontalAlignment="Center"
-            VerticalAlignment="Bottom"
-            Classes="cancel"
-            Command="{Binding DeleteMethodicCommand}"
-            Content="Удалить этап"
-            DockPanel.Dock="Bottom" />
 
     </DockPanel>
 </UserControl>

@@ -5,7 +5,7 @@ public partial class Methodic03_2 : Methodic // уведомлять ti
     public override double MethodicId => 3.2;
     public override string MethodicName => "Формирование (корректировка) информационных массивов (ИМ) специального программного обеспечения (СПО) СИП БЖ";
 
-    public override double CalcLabor()
+    protected override double CalcLabor()
     {
         return _T_Н + _T_БЖ;
     }

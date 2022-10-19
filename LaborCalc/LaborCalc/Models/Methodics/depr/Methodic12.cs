@@ -5,7 +5,7 @@ public partial class Methodic12 : Methodic
     public override double MethodicId => 12;
     public override string MethodicName => "Проведение испытаний";
 
-    public override double CalcLabor()
+    protected override double CalcLabor()
     {
         return (K * T) + AddedTables.Sum(t => t.FullLabor);
     }

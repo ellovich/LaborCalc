@@ -2,9 +2,9 @@
     x:Class="LaborCalc.Views.Methodic12Template"
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:laborCalc="clr-namespace:LaborCalc"
     xmlns:controls="clr-namespace:LaborCalc.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:laborCalc="clr-namespace:LaborCalc"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:models="clr-namespace:LaborCalc.Models"
     xmlns:viewModels="clr-namespace:LaborCalc.ViewModels"
@@ -13,73 +13,43 @@
     d:DesignWidth="700"
     mc:Ignorable="d">
 
-    <DockPanel>
+    <Grid ColumnDefinitions="50, 100*, 50*, auto" RowDefinitions="auto, auto, auto, auto, auto, auto, auto, auto, auto">
 
-        <Grid
-            MaxWidth="1100"
-            ColumnDefinitions="50, 300, 300, auto"
-            DockPanel.Dock="Top"
-            RowDefinitions="auto, auto, auto, auto, auto, auto, auto, auto, auto">
+        <TextBlock
+            Grid.Row="0"
+            Grid.Column="0"
+            VerticalAlignment="Center"
+            Text="k" />
+        <TextBlock
+            Grid.Row="0"
+            Grid.Column="1"
+            VerticalAlignment="Center"
+            Text="Количество сотрудников, принимающих участие в проведении испытаний:"
+            TextWrapping="Wrap" />
+        <NumericUpDown
+            Grid.Row="0"
+            Grid.Column="2"
+            VerticalAlignment="Center"
+            Classes="count"
+            Value="{Binding K}" />
 
-            <TextBlock
-                Grid.Row="0"
-                Grid.Column="0"
-                Margin="15"
-                VerticalAlignment="Center"
-                Text="k" />
-            <TextBlock
-                Grid.Row="0"
-                Grid.Column="1"
-                Margin="15"
-                Text="Количество сотрудников, принимающих участие в проведении испытаний:"
-                TextWrapping="Wrap" />
-            <NumericUpDown
-                Grid.Row="0"
-                Grid.Column="2"
-                VerticalAlignment="Center"
-                Classes="count"
-                Value="{Binding K}" />
-
-            <TextBlock
-                Grid.Row="1"
-                Grid.Column="0"
-                Margin="15"
-                VerticalAlignment="Center"
-                Text="t" />
-            <TextBlock
-                Grid.Row="1"
-                Grid.Column="1"
-                Margin="15"
-                Text="Длительность испытаний:"
-                TextWrapping="Wrap" />
-            <NumericUpDown
-                Grid.Row="1"
-                Grid.Column="2"
-                VerticalAlignment="Center"
-                Classes="count"
-                Value="{Binding T}" />
-        </Grid>
-
-        <!--<TextBlock
-            Background="Red"
-            DockPanel.Dock="Top"
-            Text="{Binding Labor}" />-->
-
-        <!--<Button
-            Margin="0,30,0,30"
-            HorizontalAlignment="Center"
-            Classes="add"
-            DockPanel.Dock="Top">
-            Добавить документацию
-        </Button>-->
-
-        <Button
-            HorizontalAlignment="Center"
-            VerticalAlignment="Bottom"
-            Classes="cancel"
-            Command="{Binding DeleteMethodicCommand}"
-            Content="Удалить этап"
-            DockPanel.Dock="Bottom" />
-
-    </DockPanel>
+        <TextBlock
+            Grid.Row="1"
+            Grid.Column="0"
+            VerticalAlignment="Center"
+            Text="t" />
+        <TextBlock
+            Grid.Row="1"
+            Grid.Column="1"
+            VerticalAlignment="Center"
+            Text="Длительность испытаний:"
+            TextWrapping="Wrap" />
+        <NumericUpDown
+            Grid.Row="1"
+            Grid.Column="2"
+            VerticalAlignment="Center"
+            Classes="count"
+            Value="{Binding T}" />
+		
+    </Grid>
 </UserControl>

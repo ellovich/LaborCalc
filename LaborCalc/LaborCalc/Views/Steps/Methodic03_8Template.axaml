@@ -2,9 +2,9 @@
     x:Class="LaborCalc.Views.Methodic03_8Template"
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:laborCalc="clr-namespace:LaborCalc"
     xmlns:controls="clr-namespace:LaborCalc.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:laborCalc="clr-namespace:LaborCalc"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:models="clr-namespace:LaborCalc.Models"
     xmlns:viewModels="clr-namespace:LaborCalc.ViewModels"
@@ -16,15 +16,13 @@
     <DockPanel>
 
         <Grid
-            MaxWidth="1100"
-            ColumnDefinitions="50*, 300*, 100*, auto"
+            ColumnDefinitions="50, 100*, 50*, auto"
             DockPanel.Dock="Top"
             RowDefinitions="auto, auto, auto, auto, auto, auto, auto, auto, auto">
 
             <StackPanel
                 Grid.Row="0"
                 Grid.Column="0"
-                Margin="15"
                 VerticalAlignment="Center"
                 Orientation="Horizontal">
                 <TextBlock Text="n" />
@@ -33,7 +31,7 @@
             <TextBlock
                 Grid.Row="0"
                 Grid.Column="1"
-                Margin="15"
+                VerticalAlignment="Center"
                 Text="Кол-во производимых расчётов:"
                 TextWrapping="Wrap" />
             <NumericUpDown
@@ -43,14 +41,6 @@
                 Classes="count"
                 Value="{Binding N_ср}" />
         </Grid>
-
-        <Button
-            HorizontalAlignment="Center"
-            VerticalAlignment="Bottom"
-            Classes="cancel"
-            Command="{Binding DeleteMethodicCommand}"
-            Content="Удалить этап"
-            DockPanel.Dock="Bottom" />
 
     </DockPanel>
 </UserControl>

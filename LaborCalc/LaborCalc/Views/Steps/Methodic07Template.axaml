@@ -2,9 +2,9 @@
     x:Class="LaborCalc.Views.Methodic07Template"
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:laborCalc="clr-namespace:LaborCalc"
     xmlns:controls="clr-namespace:LaborCalc.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:laborCalc="clr-namespace:LaborCalc"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:models="clr-namespace:LaborCalc.Models"
     xmlns:viewModels="clr-namespace:LaborCalc.ViewModels"
@@ -16,31 +16,43 @@
     <DockPanel>
 
         <TextBox
-            Background="Transparent"
-            BorderThickness="0"
-            DockPanel.Dock="Top"
-            IsHitTestVisible="False"
-            TextWrapping="Wrap">
+            Margin="0,0,0,20"
+            Padding="0"
+            Classes="read l"
+            DockPanel.Dock="Top">
             Затраты времени на руководство проектом зависят от сложности проекта и составляют от 5% до 10% от суммарной трудоёмкости всех этапов проекта
         </TextBox>
 
-        <NumericUpDown
-            Width="200"
-            Margin="10"
-            HorizontalAlignment="Left"
-            Classes="count"
+        <Grid
+            ColumnDefinitions="50, 100*, 50*, auto"
             DockPanel.Dock="Top"
-            Maximum="10"
-            Minimum="5"
-            Value="{Binding Percent}" />
+            RowDefinitions="auto, auto, auto, auto, auto, auto, auto, auto, auto">
 
-        <Button
-            HorizontalAlignment="Center"
-            VerticalAlignment="Bottom"
-            Classes="cancel"
-            Command="{Binding DeleteMethodicCommand}"
-            Content="Удалить этап"
-            DockPanel.Dock="Bottom" />
+            <StackPanel
+                Grid.Row="0"
+                Grid.Column="0"
+                VerticalAlignment="Center"
+                Orientation="Horizontal">
+                <TextBlock Text="     " />
+                <TextBlock Classes="sub" Text="       " />
+            </StackPanel>
+            <TextBlock
+                Grid.Row="0"
+                Grid.Column="1"
+                VerticalAlignment="Center"
+                Text="Затраты времени на руководство, %:"
+                TextWrapping="Wrap" />
+            <NumericUpDown
+                Grid.Row="0"
+                Grid.Column="2"
+                VerticalAlignment="Center"
+                Classes="count"
+                Maximum="10"
+                Minimum="5"
+                Value="{Binding Percent}" />
+        </Grid>
+
+
 
     </DockPanel>
 </UserControl>

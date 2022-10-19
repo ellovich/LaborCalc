@@ -2,9 +2,9 @@
     x:Class="LaborCalc.Views.Methodic09Template"
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:laborCalc="clr-namespace:LaborCalc"
     xmlns:controls="clr-namespace:LaborCalc.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:laborCalc="clr-namespace:LaborCalc"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:models="clr-namespace:LaborCalc.Models"
     xmlns:viewModels="clr-namespace:LaborCalc.ViewModels"
@@ -16,6 +16,7 @@
     <DockPanel>
 
         <DataGrid
+            MaxHeight="10000"
             Margin="0,0,0,20"
             VerticalAlignment="Stretch"
             Classes="common"
@@ -23,7 +24,7 @@
             Items="{Binding T_9_1.TableItems}">
 
             <DataGrid.Columns>
-                <DataGridTemplateColumn Width="*" Header="Наименование работы">
+                <DataGridTemplateColumn Width="2*" Header="Наименование работы">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <TextBox
@@ -34,7 +35,7 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
 
-                <DataGridTemplateColumn Width="auto" Header="Единица измерения">
+                <DataGridTemplateColumn Width="*" Header="Единица измерения">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <TextBox
@@ -45,10 +46,7 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
 
-                <DataGridTemplateColumn
-                    Width="auto"
-                    Header="Норма"
-                    >
+                <DataGridTemplateColumn Width="auto" Header="Норма">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <TextBox Classes="read" Text="{Binding Norm}" />
@@ -64,10 +62,7 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
 
-                <DataGridTemplateColumn
-                    Width="auto"
-                    Header="Трудоёмкость"
-                    >
+                <DataGridTemplateColumn Width="*" Header="Трудоёмкость">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <TextBox Classes="read" Text="{Binding Labor}" />
@@ -80,14 +75,6 @@
         <CheckBox DockPanel.Dock="Top" IsChecked="{Binding Aggregation}">
             Комплексирование математических моделей отдельных элементов в математическую модель агрегата (установки)
         </CheckBox>
-
-        <Button
-            HorizontalAlignment="Center"
-            VerticalAlignment="Bottom"
-            Classes="cancel"
-            Command="{Binding DeleteMethodicCommand}"
-            Content="Удалить этап"
-            DockPanel.Dock="Bottom" />
 
     </DockPanel>
 </UserControl>

@@ -19,7 +19,7 @@ public class Project : IEntity
     {
         Name = $"Проект_{Id}";
         Location = $"{s_standartLocation}\\{Name}";
-        StepsManager = StepsManager.CreateTemplate();
+        StepsManager = new StepsManager();
         ReportsManager = new ReportsManager(this);
     }
 
@@ -40,26 +40,19 @@ public class Project : IEntity
 
     public static Project LoadFromJson(string path)
     {
-        try
+        string json = File.ReadAllText(path);
+        var p = JsonConvert.DeserializeObject<Project>(json);
+
+        if (p != null)
         {
-            string json = File.ReadAllText(path);
-            var p = JsonConvert.DeserializeObject<Project>(json);
-
-            if (p != null)
-            {
-                p.Location = Path.GetDirectoryName(path);
-                p.Name = Path.GetFileNameWithoutExtension(path);
-            }
-            else
-            {
-                throw new Exception($"Ошибка чтения файла {path}");
-            }
-
-            return p;
+            p.Location = Path.GetDirectoryName(path);
+            p.Name = Path.GetFileNameWithoutExtension(path);
         }
-        catch (Exception ex)
+        else
         {
             throw new Exception($"Ошибка чтения файла {path}");
         }
+
+        return p;
     }
 }

@@ -16,14 +16,6 @@
     <DockPanel>
 
 
-		
-        <Button
-            HorizontalAlignment="Center"
-            VerticalAlignment="Bottom"
-            Classes="cancel"
-            Command="{Binding DeleteMethodicCommand}"
-            Content="Удалить этап"
-            DockPanel.Dock="Bottom" />
 
     </DockPanel>
 </UserControl>

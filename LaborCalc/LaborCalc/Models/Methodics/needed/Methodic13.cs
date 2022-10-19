@@ -5,7 +5,7 @@ public partial class Methodic13 : Methodic
     public override double MethodicId => 13;
     public override string MethodicName => "Проведение пуско-наладочных работ";
 
-    public override double CalcLabor()
+    protected override double CalcLabor()
     {
         return 0;
         //return т_13_1.ОбщаяТрудоемкость;

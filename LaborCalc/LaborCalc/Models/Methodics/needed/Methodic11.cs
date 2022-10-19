@@ -5,7 +5,7 @@ public partial class Methodic11 : Methodic
     public override double MethodicId => 11;
     public override string MethodicName => "Обучение специалистов (пользователей) порядку использования СПО";
 
-    public override double CalcLabor()
+    protected override double CalcLabor()
     {
         return (_T_упд + _T_умм + _T_зан + _T_экз) * Correction.Coef;
     }

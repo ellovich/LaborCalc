@@ -5,7 +5,7 @@ public partial class Methodic08 : Methodic
     public override double MethodicId => 8;
     public override string MethodicName => "Разработка КОП и ТП"; // Разработка компьютерных обучающих и тренажерных программ
 
-    public override double CalcLabor()
+    protected override double CalcLabor()
     {
         throw new NotImplementedException();
     }

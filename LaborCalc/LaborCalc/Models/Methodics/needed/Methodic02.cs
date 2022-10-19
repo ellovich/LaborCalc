@@ -7,7 +7,7 @@ public partial class Methodic02 : Methodic
     public override double MethodicId => 2;
     public override string MethodicName => "Разработка документации";
 
-    public override double CalcLabor()
+    protected override double CalcLabor()
     {
         return addedReadyDocs.FullLabor + addedSuperDocs.Sum(s => s.FullLabor);
     }

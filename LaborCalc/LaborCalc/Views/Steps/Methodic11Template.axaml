@@ -2,9 +2,9 @@
     x:Class="LaborCalc.Views.Methodic11Template"
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:laborCalc="clr-namespace:LaborCalc"
     xmlns:controls="clr-namespace:LaborCalc.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:laborCalc="clr-namespace:LaborCalc"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:models="clr-namespace:LaborCalc.Models"
     xmlns:viewModels="clr-namespace:LaborCalc.ViewModels"
@@ -13,95 +13,77 @@
     d:DesignWidth="700"
     mc:Ignorable="d">
 
-    <DockPanel>
+    <Grid ColumnDefinitions="50, 100*, 50*, auto" RowDefinitions="auto, auto, auto, auto, auto, auto, auto, auto, auto">
 
-        <Grid
-            MaxWidth="1100"
-            ColumnDefinitions="50*, 300*, 300*, auto"
-            DockPanel.Dock="Top"
-            RowDefinitions="auto, auto, auto, auto, auto, auto, auto, auto, auto">
+        <StackPanel
+            Grid.Row="0"
+            Grid.Column="0"
+            VerticalAlignment="Center"
+            Orientation="Horizontal">
+            <TextBlock Text="n" />
+            <TextBlock Classes="sub" Text="зан" />
+        </StackPanel>
+        <TextBlock
+            Grid.Row="0"
+            Grid.Column="1"
+            VerticalAlignment="Center"
+            Text="Кол-во часов занятий:"
+            TextWrapping="Wrap" />
+        <NumericUpDown
+            Grid.Row="0"
+            Grid.Column="2"
+            VerticalAlignment="Center"
+            Classes="count"
+            Value="{Binding N_зан}" />
 
-            <StackPanel
-                Grid.Row="0"
-                Grid.Column="0"
-                Margin="15"
-                VerticalAlignment="Center"
-                Orientation="Horizontal">
-                <TextBlock Text="n" />
-                <TextBlock Classes="sub" Text="зан" />
-            </StackPanel>
-            <TextBlock
-                Grid.Row="0"
-                Grid.Column="1"
-                Margin="15"
-                Text="Кол-во часов занятий:"
-                TextWrapping="Wrap" />
-            <NumericUpDown
-                Grid.Row="0"
-                Grid.Column="2"
-                VerticalAlignment="Center"
-                Classes="count"
-                Value="{Binding N_зан}" />
+        <StackPanel
+            Grid.Row="1"
+            Grid.Column="0"
+            VerticalAlignment="Center"
+            Orientation="Horizontal">
+            <TextBlock Text="n" />
+            <TextBlock Classes="sub" Text="экз" />
+        </StackPanel>
+        <TextBlock
+            Grid.Row="1"
+            Grid.Column="1"
+            VerticalAlignment="Center"
+            Text="Кол-во часов на проведение экзаменов/зачётов:"
+            TextWrapping="Wrap" />
+        <NumericUpDown
+            Grid.Row="1"
+            Grid.Column="2"
+            VerticalAlignment="Center"
+            Classes="count"
+            Value="{Binding N_экз}" />
 
-            <StackPanel
-                Grid.Row="1"
-                Grid.Column="0"
-                Margin="15"
-                VerticalAlignment="Center"
-                Orientation="Horizontal">
-                <TextBlock Text="n" />
-                <TextBlock Classes="sub" Text="экз" />
-            </StackPanel>
-            <TextBlock
-                Grid.Row="1"
-                Grid.Column="1"
-                Margin="15"
-                Text="Кол-во часов на проведение экзаменов/зачётов:"
-                TextWrapping="Wrap" />
-            <NumericUpDown
-                Grid.Row="1"
-                Grid.Column="2"
-                VerticalAlignment="Center"
-                Classes="count"
-                Value="{Binding N_экз}" />
-
-            <StackPanel
-                Grid.Row="2"
-                Grid.Column="0"
-                Margin="15"
-                VerticalAlignment="Center"
-                Orientation="Horizontal">
-                <TextBlock Text="k" />
-                <TextBlock Classes="sub" Text="нов" />
-            </StackPanel>
-            <TextBlock
-                Grid.Row="2"
-                Grid.Column="1"
-                Margin="15"
-                Text="Степень корректировки:"
-                TextWrapping="Wrap" />
-            <ComboBox
-                Grid.Row="2"
-                Grid.Column="2"
-                VerticalAlignment="Center"
-                Classes="correction"
-                Items="{x:Static models:Methodic11.s_Corrections11_2}"
-                SelectedItem="{Binding Correction}">
-                <ComboBox.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding}" ToolTip.Tip="{Binding Coef}" />
-                    </DataTemplate>
-                </ComboBox.ItemTemplate>
-            </ComboBox>
-        </Grid>
-
-        <Button
-            HorizontalAlignment="Center"
-            VerticalAlignment="Bottom"
-            Classes="cancel"
-            Command="{Binding DeleteMethodicCommand}"
-            Content="Удалить этап"
-            DockPanel.Dock="Bottom" />
-
-    </DockPanel>
+        <StackPanel
+            Grid.Row="2"
+            Grid.Column="0"
+            VerticalAlignment="Center"
+            Orientation="Horizontal">
+            <TextBlock Text="k" />
+            <TextBlock Classes="sub" Text="нов" />
+        </StackPanel>
+        <TextBlock
+            Grid.Row="2"
+            Grid.Column="1"
+            VerticalAlignment="Center"
+            Text="Степень корректировки:"
+            TextWrapping="Wrap" />
+        <ComboBox
+            Grid.Row="2"
+            Grid.Column="2"
+            VerticalAlignment="Center"
+            Classes="correction"
+            Items="{x:Static models:Methodic11.s_Corrections11_2}"
+            SelectedItem="{Binding Correction}">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding}" ToolTip.Tip="{Binding Coef}" />
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+		
+    </Grid>
 </UserControl>

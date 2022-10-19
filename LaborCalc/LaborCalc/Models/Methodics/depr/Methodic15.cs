@@ -19,7 +19,7 @@ public partial class Methodic15 : Methodic
         throw new NotImplementedException();
     }
 
-    public override double CalcLabor()
+    protected override double CalcLabor()
     {
         throw new NotImplementedException();
     }

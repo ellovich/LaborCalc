@@ -5,7 +5,7 @@ public partial class Methodic09 : Methodic
     public override double MethodicId => 9;
     public override string MethodicName => "Математическое моделирование";
 
-    public override double CalcLabor()
+    protected override double CalcLabor()
     {
         return (Aggregation) ?
             T_9_1.FullLabor * 1.3 : // + (0,3 трудоемкости разработки входящих в нее мат. моделей)

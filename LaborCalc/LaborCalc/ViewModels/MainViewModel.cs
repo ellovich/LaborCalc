@@ -9,17 +9,31 @@ public partial class MainViewModel : ViewModelBase
 
     public Project Project { get; set; }
 
-    public MainViewModel(Project project)
+    public MainViewModel()
     {
-        Project = project;
+        string[] args = Environment.GetCommandLineArgs();
+
+        //args = new string[]
+        //{
+        //    "",
+        //    "C:\\Users\\ello\\Desktop\\TEST_PROJECT.labor"
+        //};
+
+
+        Project project;
+
+        if (args != null && args.Length > 1)
+        {
+            Project = Project.LoadFromJson(args[1]);
+            Project.ReportsManager = new(Project); // создается отдельно из-за зацикливания
+        }
+        else
+        {
+            Project = new();
+        }
+
         LoadTabs();
     }
-
-    //public MainViewModel()
-    //{
-    //    Project = new();
-    //    LoadTabs();
-    //}
 
     private void LoadTabs()
     {
@@ -27,7 +41,7 @@ public partial class MainViewModel : ViewModelBase
         Tabs.Insert(0, new TabItem()
         {
             Header = "Все этапы",
-            Content = new MethodicsManagerPage(Project.StepsManager),
+            Content = new StepsManagerPage(Project.StepsManager),
             [!TabItem.TagProperty] = new Binding(nameof(Project.StepsManager.FullLabor)) { Source = Project.StepsManager }
         });
     }

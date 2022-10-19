@@ -30,8 +30,8 @@ public class ReportsManager
 
     private string GenerateReport()
     {
-        foreach (var methodic in _project.StepsManager.DoneSteps)
-            _reports.Add(DesignReport(methodic, methodic.CreateHtmlReport()));
+        //foreach (var methodic in _project.StepsManager.DoneSteps)
+        //    _reports.Add(DesignReport(methodic, methodic.CreateHtmlReport()));
 
         return $@"
 <!doctype html>

@@ -7,7 +7,7 @@ public partial class Methodic10 : Methodic
 
     public Methodic10() { }
 
-    public override double CalcLabor()
+    protected override double CalcLabor()
     {
         throw new NotImplementedException();
     }

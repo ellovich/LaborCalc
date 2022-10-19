@@ -5,7 +5,7 @@ public partial class Methodic03_6 : Methodic // TODO нужна ли корре�
     public override double MethodicId => 3.6;
     public override string MethodicName => "Разработка протокола сопряжения с внешними (по отношению к СПО СИП БЖ) системами";
 
-    public override double CalcLabor()
+    protected override double CalcLabor()
     {
         return Protocols * _norm;
     }

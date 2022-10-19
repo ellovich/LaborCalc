@@ -7,7 +7,7 @@ public partial class Methodic07 : Methodic
     public override double MethodicId => 7;
     public override string MethodicName => "Руководство проектом";
 
-    public override double CalcLabor() // TODO разобраться
+    protected override double CalcLabor() // TODO разобраться
     {
         return 0;
 

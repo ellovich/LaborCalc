@@ -6,7 +6,7 @@ public partial class Methodic06 : Methodic
     public override string MethodicName => "Формирование электронной технической библиотеки " +
                                            "интерактивных руководящих, эксплуатационных и учебно-методических документов";
 
-    public override double CalcLabor()
+    protected override double CalcLabor()
     {
         return (_T_ит + _T_рт + _T_чс + _T_п) * Correction.Coef;
     }

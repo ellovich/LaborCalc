@@ -12,155 +12,140 @@
     d:DesignWidth="700"
     mc:Ignorable="d">
 
-    <DockPanel>
+    <Grid ColumnDefinitions="50, 100*, 50*, auto" RowDefinitions="auto, auto, auto, auto, auto, auto, auto, auto, auto">
 
-        <Grid
-            MaxWidth="1100"
-            ColumnDefinitions="50, 100*, 100*, auto"
-            DockPanel.Dock="Top"
-            RowDefinitions="auto, auto, auto, auto, auto, auto, auto, auto, auto">
+        <StackPanel
+            Grid.Row="0"
+            Grid.Column="0"
+            VerticalAlignment="Center"
+            Orientation="Horizontal">
+            <TextBlock Text="n" />
+            <TextBlock Classes="sub" Text="ЛТ" />
+        </StackPanel>
+        <TextBox
+            Grid.Row="0"
+            Grid.Column="1"
+            VerticalAlignment="Center"
+            Classes="read l"
+            Text="Кол-во листов текста:" />
+        <NumericUpDown
+            Grid.Row="0"
+            Grid.Column="2"
+            VerticalAlignment="Center"
+            Classes="count"
+            Value="{Binding N_лт}" />
 
-            <StackPanel
-                Grid.Row="0"
-                Grid.Column="0"
-                Margin="15"
-                VerticalAlignment="Center"
-                Orientation="Horizontal">
-                <TextBlock Text="n" />
-                <TextBlock Classes="sub" Text="ЛТ" />
-            </StackPanel>
-            <TextBlock
-                Grid.Row="0"
-                Grid.Column="1"
-                Margin="15"
-                Text="Кол-во листов текста:" />
-            <NumericUpDown
-                Grid.Row="0"
-                Grid.Column="2"
-                VerticalAlignment="Center"
-                Classes="count"
-                Value="{Binding N_лт}" />
+        <StackPanel
+            Grid.Row="1"
+            Grid.Column="0"
+            VerticalAlignment="Center"
+            Orientation="Horizontal">
+            <TextBlock Text="n" />
+            <TextBlock Classes="sub" Text="Рис" />
+        </StackPanel>
+        <TextBox
+            Grid.Row="1"
+            Grid.Column="1"
+            VerticalAlignment="Center"
+            Classes="read l"
+            Text="Кол-во рисунков:" />
+        <NumericUpDown
+            Grid.Row="1"
+            Grid.Column="2"
+            VerticalAlignment="Center"
+            Classes="count"
+            Value="{Binding N_рис}" />
 
-            <StackPanel
-                Grid.Row="1"
-                Grid.Column="0"
-                Margin="15"
-                VerticalAlignment="Center"
-                Orientation="Horizontal">
-                <TextBlock Text="n" />
-                <TextBlock Classes="sub" Text="Рис" />
-            </StackPanel>
-            <TextBlock
-                Grid.Row="1"
-                Grid.Column="1"
-                Margin="15"
-                Text="Кол-во рисунков:" />
-            <NumericUpDown
-                Grid.Row="1"
-                Grid.Column="2"
-                VerticalAlignment="Center"
-                Classes="count"
-                Value="{Binding N_рис}" />
+        <StackPanel
+            Grid.Row="2"
+            Grid.Column="0"
+            VerticalAlignment="Center"
+            Orientation="Horizontal">
+            <TextBlock Text="n" />
+            <TextBlock Classes="sub" Text="ЛТаб" />
+        </StackPanel>
+        <TextBox
+            Grid.Row="2"
+            Grid.Column="1"
+            VerticalAlignment="Center"
+            Classes="read l"
+            Text="Кол-во листов таблиц:" />
+        <NumericUpDown
+            Grid.Row="2"
+            Grid.Column="2"
+            VerticalAlignment="Center"
+            Classes="count"
+            Value="{Binding N_лтаб}" />
 
-            <StackPanel
-                Grid.Row="2"
-                Grid.Column="0"
-                Margin="15"
-                VerticalAlignment="Center"
-                Orientation="Horizontal">
-                <TextBlock Text="n" />
-                <TextBlock Classes="sub" Text="ЛТаб" />
-            </StackPanel>
-            <TextBlock
-                Grid.Row="2"
-                Grid.Column="1"
-                Margin="15"
-                Text="Кол-во листов таблиц:" />
-            <NumericUpDown
-                Grid.Row="2"
-                Grid.Column="2"
-                VerticalAlignment="Center"
-                Classes="count"
-                Value="{Binding N_лтаб}" />
+        <StackPanel
+            Grid.Row="3"
+            Grid.Column="0"
+            VerticalAlignment="Center"
+            Orientation="Horizontal">
+            <TextBlock Text="n" />
+            <TextBlock Classes="sub" Text="ЧС" />
+        </StackPanel>
+        <TextBox
+            Grid.Row="3"
+            Grid.Column="1"
+            VerticalAlignment="Center"
+            Classes="read l"
+            Text="Кол-во чертежей (схем):" />
+        <NumericUpDown
+            Grid.Row="3"
+            Grid.Column="2"
+            VerticalAlignment="Center"
+            Classes="count"
+            Value="{Binding N_чс}" />
 
-            <StackPanel
-                Grid.Row="3"
-                Grid.Column="0"
-                Margin="15"
-                VerticalAlignment="Center"
-                Orientation="Horizontal">
-                <TextBlock Text="n" />
-                <TextBlock Classes="sub" Text="ЧС" />
-            </StackPanel>
-            <TextBlock
-                Grid.Row="3"
-                Grid.Column="1"
-                Margin="15"
-                Text="Кол-во чертежей (схем):" />
-            <NumericUpDown
-                Grid.Row="3"
-                Grid.Column="2"
-                VerticalAlignment="Center"
-                Classes="count"
-                Value="{Binding N_чс}" />
+        <StackPanel
+            Grid.Row="4"
+            Grid.Column="0"
+            VerticalAlignment="Center"
+            Orientation="Horizontal">
+            <TextBlock Text="n" />
+            <TextBlock Classes="sub" Text="Д" />
+        </StackPanel>
+        <TextBox
+            Grid.Row="4"
+            Grid.Column="1"
+            VerticalAlignment="Center"
+            Classes="read l"
+            Text="Кол-во документов:" />
+        <NumericUpDown
+            Grid.Row="4"
+            Grid.Column="2"
+            VerticalAlignment="Center"
+            Classes="count"
+            Value="{Binding N_д}" />
 
-            <StackPanel
-                Grid.Row="4"
-                Grid.Column="0"
-                Margin="15"
-                VerticalAlignment="Center"
-                Orientation="Horizontal">
-                <TextBlock Text="n" />
-                <TextBlock Classes="sub" Text="Д" />
-            </StackPanel>
-            <TextBlock
-                Grid.Row="4"
-                Grid.Column="1"
-                Margin="15"
-                Text="Кол-во документов:" />
-            <NumericUpDown
-                Grid.Row="4"
-                Grid.Column="2"
-                VerticalAlignment="Center"
-                Classes="count"
-                Value="{Binding N_д}" />
+        <StackPanel
+            Grid.Row="5"
+            Grid.Column="0"
+            VerticalAlignment="Center"
+            Orientation="Horizontal">
+            <TextBlock Text="k" />
+            <TextBlock Classes="sub" Text="нов" />
+        </StackPanel>
+        <TextBox
+            Grid.Row="5"
+            Grid.Column="1"
+            VerticalAlignment="Center"
+            Classes="read l"
+            Text="Степень корректировки:" />
+        <ComboBox
+            Grid.Row="5"
+            Grid.Column="2"
+            VerticalAlignment="Center"
+            Classes="correction"
+            Items="{x:Static models:Methodic06.s_Corrections_6_2}"
+            SelectedItem="{Binding Correction}">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding}" ToolTip.Tip="{Binding Coef}" />
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
 
-            <StackPanel
-                Grid.Row="5"
-                Grid.Column="0"
-                Margin="15"
-                VerticalAlignment="Center"
-                Orientation="Horizontal">
-                <TextBlock Text="k" />
-                <TextBlock Classes="sub" Text="нов" />
-            </StackPanel>
-            <TextBlock
-                Grid.Row="5"
-                Grid.Column="1"
-                Margin="15"
-                Text="Степень корректировки:" />
-            <ComboBox
-                Grid.Row="5"
-                Grid.Column="2"
-                VerticalAlignment="Center"
-                Classes="correction"
-                Items="{x:Static models:Methodic06.s_Corrections_6_2}"
-                SelectedItem="{Binding Correction}">
-                <ComboBox.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding}" ToolTip.Tip="{Binding Coef}" />
-                    </DataTemplate>
-                </ComboBox.ItemTemplate>
-            </ComboBox>
-        </Grid>
-
-        <Button
-            HorizontalAlignment="Center"
-            VerticalAlignment="Bottom"
-            Classes="cancel"
-            Command="{Binding DeleteMethodicCommand}"
-            Content="Удалить этап"
-            DockPanel.Dock="Bottom" />
-
-    </DockPanel>
+    </Grid>
 </UserControl>

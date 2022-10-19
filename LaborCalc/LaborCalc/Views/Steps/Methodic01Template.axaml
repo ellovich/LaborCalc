@@ -2,26 +2,220 @@
     x:Class="LaborCalc.Views.Methodic01Template"
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:laborCalc="clr-namespace:LaborCalc"
     xmlns:controls="clr-namespace:LaborCalc.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:laborCalc="clr-namespace:LaborCalc"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:models="clr-namespace:LaborCalc.Models"
     xmlns:viewModels="clr-namespace:LaborCalc.ViewModels"
     xmlns:views="clr-namespace:LaborCalc.Views"
-    d:DesignHeight="960"
+    d:DesignHeight="1060"
     d:DesignWidth="700"
+    x:DataType="models:Methodic01"
     mc:Ignorable="d">
 
-    <DockPanel>
+    <UserControl.Styles>
+        <Style Selector="Separator">
+            <Setter Property="Background" Value="Red" />
+            <Setter Property="Height" Value="5" />
+            <Setter Property="Margin" Value="0" />
+        </Style>
+    </UserControl.Styles>
 
-        <Button
-            HorizontalAlignment="Center"
-            VerticalAlignment="Bottom"
-            Classes="cancel"
-            Command="{Binding DeleteMethodicCommand}"
-            Content="Удалить этап"
-            DockPanel.Dock="Bottom" />
+    <StackPanel>
 
-    </DockPanel>
+        <!--  Стадии разработки проектных решений  -->
+        <Border Background="Blue">
+            <StackPanel>
+                <TextBlock Classes="h" Text="Стадии разработки проектных решений:" />
+
+                <CheckBox IsChecked="{Binding СтадииПроекта[0].IsEnabled}">Техническое задание</CheckBox>
+                <TextBlock Text="{Binding СтадииПроекта[0].Labor, StringFormat='Трудоёмкость: {0}'}" />
+
+                <CheckBox IsChecked="{Binding СтадииПроекта[1].IsEnabled}">Эскизный проект</CheckBox>
+                <TextBlock Text="{Binding СтадииПроекта[1].Labor, StringFormat='Трудоёмкость: {0}'}" />
+
+                <CheckBox IsChecked="{Binding СтадииПроекта[2].IsEnabled}">Техническсий проект</CheckBox>
+                <TextBlock Text="{Binding СтадииПроекта[2].Labor, StringFormat='Трудоёмкость: {0}'}" />
+
+                <CheckBox IsChecked="{Binding СтадииПроекта[3].IsEnabled}">Рабочий проект</CheckBox>
+                <TextBlock Text="{Binding СтадииПроекта[3].Labor, StringFormat='Трудоёмкость: {0}'}" />
+
+                <CheckBox IsChecked="{Binding СтадииПроекта[4].IsEnabled}">Внедрение</CheckBox>
+                <TextBlock Text="{Binding СтадииПроекта[4].Labor, StringFormat='Трудоёмкость: {0}'}" />
+
+            </StackPanel>
+        </Border>
+
+        <!--  Данные о задаче  -->
+        <Border Background="Red">
+            <StackPanel>
+
+                <TextBlock Classes="h" Text="Данные о задаче:" />
+
+                <TextBlock Text="Комплекс задач:" />
+                <ComboBox
+                    Grid.Row="5"
+                    Grid.Column="2"
+                    VerticalAlignment="Center"
+                    Classes="correction"
+                    Items="{x:Static models:Methodic01.s_КомплексыЗадач}"
+                    SelectedItem="{Binding КомплексЗадач}" />
+
+                <TextBlock Text="Степень новизны разрабатываемых комплексов задач:" />
+                <ComboBox
+                    Grid.Row="5"
+                    Grid.Column="2"
+                    VerticalAlignment="Center"
+                    Classes="correction"
+                    Items="{x:Static models:Methodic01.s_СтепеньНовизны}"
+                    SelectedItem="{Binding СтепеньНовизны}" />
+
+                <TextBlock Text="Группа сложности алгоритма:" />
+                <ComboBox
+                    Grid.Row="5"
+                    Grid.Column="2"
+                    VerticalAlignment="Center"
+                    Classes="correction"
+                    Items="{x:Static models:Methodic01.s_ГруппаСложностиАлгоритма}"
+                    SelectedItem="{Binding ГруппаСложностиАлгоритма}" />
+
+                <TextBlock Text="Степень применения типовых проектных решений:" />
+                <ComboBox
+                    Grid.Row="5"
+                    Grid.Column="2"
+                    VerticalAlignment="Center"
+                    Classes="correction"
+                    Items="{x:Static models:Methodic01.s_СтепеньПримененияТиповыхРешений}"
+                    SelectedItem="{Binding СтепеньПримененияТиповыхРешений}" />
+            </StackPanel>
+        </Border>
+
+        <!--  Используемая информация  -->
+        <Border Background="Green">
+            <StackPanel>
+                <TextBlock Classes="h" Text="Используемая информация:" />
+
+                <!--  Кол-во входных и выходных наборов  -->
+                <Grid ColumnDefinitions="*, 100*, 50*, auto" RowDefinitions="auto, auto, auto, auto, auto, auto, auto, auto, auto">
+
+                    <TextBox
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        VerticalAlignment="Center"
+                        Classes="read l"
+                        Text="Количество наборов данных переменной информации (ПИ):" />
+                    <NumericUpDown
+                        Grid.Row="0"
+                        Grid.Column="2"
+                        VerticalAlignment="Center"
+                        Classes="count"
+                        Value="{Binding In_inf_pi}" />
+
+                    <TextBox
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        VerticalAlignment="Center"
+                        Classes="read l"
+                        Text="Количество наборов данных нормативно-справочной информации (НСИ):" />
+                    <NumericUpDown
+                        Grid.Row="1"
+                        Grid.Column="2"
+                        VerticalAlignment="Center"
+                        Classes="count"
+                        Value="{Binding In_inf_nsi}" />
+
+                    <TextBox
+                        Grid.Row="2"
+                        Grid.Column="1"
+                        VerticalAlignment="Center"
+                        Classes="read l"
+                        Text="Количество наборов данных информации при использовании банка данных (БД):" />
+                    <NumericUpDown
+                        Grid.Row="2"
+                        Grid.Column="2"
+                        VerticalAlignment="Center"
+                        Classes="count"
+                        Value="{Binding In_inf_bd}" />
+
+                    <TextBlock
+                        Grid.Row="3"
+                        Grid.Column="0"
+                        VerticalAlignment="Center"
+                        Text=" " />
+                    <TextBox
+                        Grid.Row="3"
+                        Grid.Column="1"
+                        VerticalAlignment="Center"
+                        Classes="read l"
+                        Text="Количество выходной информации" />
+                    <NumericUpDown
+                        Grid.Row="3"
+                        Grid.Column="2"
+                        VerticalAlignment="Center"
+                        Classes="count"
+                        Value="{Binding Out_inf}" />
+                </Grid>
+
+                <TextBlock Text="Вид обработки информации:" />
+                <CheckBox IsChecked="{Binding Is_РВ}">РВ</CheckBox>
+                <CheckBox IsChecked="{Binding Is_ТОУ}">ТОУ</CheckBox>
+
+                <TextBlock Text="Объём входной информации:" />
+                <ComboBox
+                    Grid.Row="5"
+                    Grid.Column="2"
+                    VerticalAlignment="Center"
+                    Classes="correction"
+                    Items="{x:Static models:Methodic01.s_ОбъемВходнойИнформации}"
+                    SelectedItem="{Binding ОбъемВходнойИнформации}" />
+
+                <TextBlock Text="Сложность контроля входной информации:" />
+                <ComboBox
+                    Grid.Row="5"
+                    Grid.Column="2"
+                    VerticalAlignment="Center"
+                    Classes="correction"
+                    Items="{x:Static models:Methodic01.s_СложностьКонтроляИнформации}"
+                    SelectedItem="{Binding СложностьКонтроляВходнойИнформации}" />
+
+                <TextBlock Text="Сложность контроля выходной информации:" />
+                <ComboBox
+                    Grid.Row="5"
+                    Grid.Column="2"
+                    VerticalAlignment="Center"
+                    Classes="correction"
+                    Items="{x:Static models:Methodic01.s_СложностьКонтроляИнформации}"
+                    SelectedItem="{Binding СложностьКонтроляВыходнойИнформации}" />
+
+            </StackPanel>
+        </Border>
+
+        <!--  Другие параметры  -->
+        <Border Background="Purple">
+            <StackPanel>
+
+                <TextBlock Classes="h" Text="Другие параметры" />
+
+                <CheckBox IsChecked="{Binding УчастиеРазработчиковПостановкиЗадачи}">Участие разработчиков постановки задачи в подготовке информационного обеспечения</CheckBox>
+                <CheckBox IsChecked="{Binding УчастиеРазработчиковПО}">Участие разработчиков ПО в подготовке информационного обеспечения</CheckBox>
+
+                <TextBlock Text="Язык программирования:" />
+                <ComboBox
+                    Grid.Row="5"
+                    Grid.Column="2"
+                    VerticalAlignment="Center"
+                    Classes="correction"
+                    Items="{x:Static models:Methodic01.s_ЯзыкПрограммирования}"
+                    SelectedItem="{Binding ЯзыкПрограммирования}" />
+
+                <CheckBox IsChecked="{Binding Разработка_мат_обеспечения}">Разработка стандартного математического обеспечения</CheckBox>
+
+                <CheckBox IsChecked="{Binding Технорабочий_проект}">Необходимость проведения стадии "Технорабочий проект" взамен "Технический проект" и "Рабочий проект"</CheckBox>
+
+            </StackPanel>
+        </Border>
+
+
+    </StackPanel>
 </UserControl>

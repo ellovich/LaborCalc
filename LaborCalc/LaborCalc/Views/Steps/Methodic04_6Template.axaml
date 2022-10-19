@@ -10,8 +10,8 @@
     xmlns:models="clr-namespace:LaborCalc.Models"
     xmlns:viewModels="clr-namespace:LaborCalc.ViewModels"
     xmlns:views="clr-namespace:LaborCalc.Views"
-    d:DesignHeight="1460"
-    d:DesignWidth="1200"
+    d:DesignHeight="1400"
+    d:DesignWidth="1000"
     mc:Ignorable="d">
 
     <UserControl.Resources>
@@ -22,7 +22,7 @@
         <Style Selector="Border.methodic04style">
             <Setter Property="Background" Value="#303030" />
             <Setter Property="BorderBrush" Value="#303030" />
-            <Setter Property="Margin" Value="10, 10, 10, 10" />
+            <Setter Property="Margin" Value="0, 10, 00, 10" />
             <Setter Property="Padding" Value="15, 20, 15, 0" />
             <Setter Property="BorderThickness" Value="0" />
             <Setter Property="Border.BoxShadow" Value="0 0 1 1 #2000" />
@@ -37,13 +37,11 @@
     <DockPanel>
 
         <Grid
-            MaxWidth="900"
             HorizontalAlignment="Left"
             ColumnDefinitions="*, *"
             DockPanel.Dock="Top">
             <StackPanel
                 Grid.Column="0"
-                Margin="10"
                 VerticalAlignment="Center"
                 Orientation="Horizontal">
                 <TextBlock Text="Общий коэффициент новизны работы " />
@@ -66,10 +64,9 @@
         </Grid>
 
         <StackPanel
-            MaxWidth="1100"
             HorizontalAlignment="Center"
             Orientation="Vertical"
-            Spacing="20">
+            Spacing="5">
 
             <!--  T_ВВ  -->
             <Border
@@ -138,7 +135,7 @@
                                         DockPanel.Dock="Bottom"
                                         RowDefinitions="auto, auto, auto, auto, auto, auto, auto, auto, auto">
 
-										<StackPanel
+                                        <StackPanel
                                             Grid.Row="0"
                                             Grid.Column="0"
                                             Margin="10"
@@ -425,6 +422,7 @@
                                     DockPanel.Dock="Top">
 
                                     <DataGrid
+                                        MaxHeight="10000"
                                         HorizontalAlignment="Stretch"
                                         CanUserResizeColumns="False"
                                         Classes="common"
@@ -737,15 +735,6 @@
                     </Grid>
                 </DockPanel>
             </Border>
-
-
-            <Button
-                HorizontalAlignment="Center"
-                VerticalAlignment="Bottom"
-                Classes="cancel"
-                Command="{Binding DeleteMethodicCommand}"
-                Content="Удалить этап"
-                DockPanel.Dock="Bottom" />
 
         </StackPanel>
     </DockPanel>

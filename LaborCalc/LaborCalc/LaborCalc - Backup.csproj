@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-    <TargetFramework>netstandard2.1</TargetFramework>
+    <TargetFramework>netstandart2.1</TargetFramework>
 		<Nullable>enable</Nullable>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<LangVersion>latest</LangVersion>
@@ -41,7 +41,9 @@
 	<ItemGroup>
 		<PackageReference Include="Avalonia" Version="11.0.0-preview2" />
 		<PackageReference Include="Avalonia.Controls.DataGrid" Version="11.0.0-preview2" />
+		<PackageReference Include="Avalonia.Controls.TreeDataGrid" Version="11.0.0-preview1" />
 		<PackageReference Include="Avalonia.Themes.Fluent" Version="11.0.0-preview2" />
+		<!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
 		<PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.0.0-preview2" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0" />
 		<PackageReference Include="MessageBox.Avalonia" Version="2.3.1-prev2" />
@@ -68,6 +70,9 @@
 	  </Compile>
 	  <Compile Update="Views\MethodicPage.axaml.cs">
 	    <DependentUpon>MethodicPage.axaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\StepsManagerPage.axaml.cs">
+	    <DependentUpon>StepsManagerPage.axaml</DependentUpon>
 	  </Compile>
 	  <Compile Update="Views\Methodics\Methodic04_6Page.axaml.cs">
 	    <DependentUpon>Methodic04_6Page.axaml</DependentUpon>
@@ -105,8 +110,8 @@
 	  <Compile Update="Views\Methodics\Methodic01Page.axaml.cs">
 	    <DependentUpon>Methodic01Page.axaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="Views\Methodics\StepsManagerPage.axaml.cs">
-	    <DependentUpon>StepsManagerPage.axaml</DependentUpon>
+	  <Compile Update="Views\Methodics\MethodicsManagerPage.axaml.cs">
+	    <DependentUpon>MethodicsManagerPage.axaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 	<ItemGroup>

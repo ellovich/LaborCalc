@@ -15,11 +15,11 @@ public class MethodicJsonConverter : JsonConverter
         return (objectType == typeof(Methodic));
     }
 
-    public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+    public override object? ReadJson(JsonReader reader, Type objectType, object? existingValue, JsonSerializer serializer)
     {
         JObject jo = JObject.Load(reader);
 
-        return jo["MethodicId"].Value<double>() switch
+        return jo["MethodicId"]?.Value<double>() switch
         {
             1 => JsonConvert.DeserializeObject<Methodic01>(jo.ToString(), SpecifiedSubclassConversion),
             2 => JsonConvert.DeserializeObject<Methodic02>(jo.ToString(), SpecifiedSubclassConversion),
@@ -52,7 +52,7 @@ public class MethodicJsonConverter : JsonConverter
         get { return false; }
     }
 
-    public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+    public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)
     {
         throw new NotImplementedException(); // won't be called because CanWrite returns false
     }
@@ -60,7 +60,7 @@ public class MethodicJsonConverter : JsonConverter
 
 public class BaseSpecifiedConcreteClassConverter : DefaultContractResolver
 {
-    protected override JsonConverter ResolveContractConverter(Type objectType)
+    protected override JsonConverter? ResolveContractConverter(Type? objectType)
     {
         if (typeof(Methodic).IsAssignableFrom(objectType) && !objectType.IsAbstract)
             return null; // pretend TableSortRuleConvert is not specified (thus avoiding a stack overflow)

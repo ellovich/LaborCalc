@@ -5,7 +5,7 @@ public partial class Methodic17 : Methodic
     public override double MethodicId => 17;
     public override string MethodicName => "Каталогизация";
 
-    public override double CalcLabor()
+    protected override double CalcLabor()
     {
         return T_17_1.FullLabor;
     }

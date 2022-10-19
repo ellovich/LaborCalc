@@ -5,7 +5,7 @@ public partial class Methodic14 : Methodic
     public override double MethodicId => 14;
     public override string MethodicName => "Закупка аппаратных и программных средств";
 
-    public override double CalcLabor() => T_14_1.FullLabor;
+    protected override double CalcLabor() => T_14_1.FullLabor;
 
     public override string CreateHtmlReport()
     {

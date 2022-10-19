@@ -5,7 +5,7 @@ public partial class Methodic04_6 : Methodic // TODO _T_надстр
     public override double MethodicId => 4.6;
     public override string MethodicName => "Создание (доработка) интерактивных 3D-моделей корабля/судна";
 
-    public override double CalcLabor()
+    protected override double CalcLabor()
     {
         return _T_ВВ + _T_ВР + _T_пом; // трудоёмкость создания (доработки) интерактивных 3D-моделей корабля/судна
     }

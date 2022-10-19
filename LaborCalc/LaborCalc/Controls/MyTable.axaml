@@ -11,6 +11,7 @@
 
     <DataGrid
         Name="Dg"
+        MaxHeight="10000"
         Margin="0,0,0,20"
         HorizontalAlignment="Stretch"
         AutoGenerateColumns="False"

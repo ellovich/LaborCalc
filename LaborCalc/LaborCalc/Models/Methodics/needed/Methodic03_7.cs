@@ -5,7 +5,7 @@ public partial class Methodic03_7 : Methodic // TODO не выставляютс
     public override double MethodicId => 3.7;
     public override string MethodicName => "Корректировка информационных массивов (ИМ) СПО по результатам кренования корабля/судна и тарировки (проливки) цистерн";
 
-    public override double CalcLabor()
+    protected override double CalcLabor()
     {
         return _t5 + _t9 + _t10;
     }

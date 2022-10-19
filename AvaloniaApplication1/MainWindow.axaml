@@ -11,13 +11,6 @@
     d:DesignWidth="500"
     mc:Ignorable="d">
 
-    <Window.DataContext>
-        <ap:MainViewModel />
-    </Window.DataContext>
-    <Design.DataContext>
-        <ap:MainViewModel />
-    </Design.DataContext>
-
     <DockPanel>
 
 		<TreeDataGrid Source="{Binding Source}"/>

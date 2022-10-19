@@ -6,7 +6,7 @@ public abstract partial class Methodic : ViewModelBase, IEntity
     public abstract double MethodicId { get; }
     public abstract string MethodicName { get; }
     public string Name { get; set; }
-    public abstract double CalcLabor();
+    protected abstract double CalcLabor();
 
     [NotifyParentProperty(true)]
     public double Labor => Math.Round( CalcLabor(), 2 );

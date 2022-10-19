@@ -12,6 +12,7 @@
     <DockPanel>
 
         <DataGrid
+            MaxHeight="10000"
             Margin="0,0,0,20"
             VerticalAlignment="Stretch"
             Classes="common"
@@ -38,10 +39,7 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
 
-                <DataGridTemplateColumn
-                    Width="auto"
-                    Header="Норма"
-                    >
+                <DataGridTemplateColumn Width="auto" Header="Норма">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <TextBox Classes="read" Text="{Binding Norm}" />
@@ -57,10 +55,7 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
 
-                <DataGridTemplateColumn
-                    Width="auto"
-                    Header="Трудоёмкость"
-                    >
+                <DataGridTemplateColumn Width="auto" Header="Трудоёмкость">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <TextBox Classes="read" Text="{Binding Labor}" />
@@ -70,13 +65,6 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <Button
-            HorizontalAlignment="Center"
-            VerticalAlignment="Bottom"
-            Classes="cancel"
-            Command="{Binding DeleteMethodicCommand}"
-            Content="Удалить этап"
-            DockPanel.Dock="Bottom" />
 
     </DockPanel>
 </UserControl>

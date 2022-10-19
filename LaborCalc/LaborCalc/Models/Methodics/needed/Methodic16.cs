@@ -5,7 +5,7 @@
         public override double MethodicId => 16;
         public override string MethodicName => "Оформление отчётных материалов";
 
-        public override double CalcLabor()
+        protected override double CalcLabor()
         {
             return T_16_1.FullLabor;
         }

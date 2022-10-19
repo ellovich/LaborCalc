@@ -106,8 +106,9 @@
 
 
     <Style Selector="DataGrid.common">
-        <Setter Property="HorizontalAlignment" Value="Stretch" />
+		<Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="HorizontalScrollBarVisibility" Value="Disabled" />
+		<Setter Property="VerticalScrollBarVisibility" Value="Disabled" />
         <Setter Property="GridLinesVisibility" Value="All" />
         <Setter Property="CanUserResizeColumns" Value="True" />
         <Setter Property="CanUserReorderColumns" Value="False" />

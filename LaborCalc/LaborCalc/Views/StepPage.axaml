@@ -2,9 +2,10 @@
     x:Class="LaborCalc.Views.StepPage"
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:laborCalc="clr-namespace:LaborCalc"
     xmlns:controls="clr-namespace:LaborCalc.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:helpers="clr-namespace:LaborCalc.Helpers"
+    xmlns:laborCalc="clr-namespace:LaborCalc"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:models="clr-namespace:LaborCalc.Models"
     xmlns:viewModels="clr-namespace:LaborCalc.ViewModels"
@@ -13,16 +14,37 @@
     d:DesignWidth="700"
     mc:Ignorable="d">
 
+    <UserControl.Resources>
+        <helpers:MethodicToControlConverter x:Key="MethodicToControl" />
+    </UserControl.Resources>
+
     <DockPanel>
 
+        <!--<ItemsControl
+			DockPanel.Dock="Top"
+            MaxWidth="1100"
+            HorizontalAlignment="Center"
+            Items="{Binding Methodics, Converter={StaticResource MethodicToControl}}" />-->
 
+		<StackPanel Name="MethodicsPanel" Spacing="20" Orientation="Vertical">
+			
+		</StackPanel>
 		
+		
+        <Button
+            HorizontalAlignment="Center"
+            VerticalAlignment="Bottom"
+            Classes="add"
+            Command="{Binding AddMethodicCommand}"
+            Content="Добавить расчёт"
+            DockPanel.Dock="Bottom" />
+
         <Button
             HorizontalAlignment="Center"
             VerticalAlignment="Bottom"
             Classes="cancel"
             Command="{Binding DeleteMethodicCommand}"
-            Content="Удалить этап"
+            Content="Удалить этап целиком"
             DockPanel.Dock="Bottom" />
 
     </DockPanel>

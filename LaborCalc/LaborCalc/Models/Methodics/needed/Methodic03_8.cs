@@ -5,7 +5,7 @@ public partial class Methodic03_8 : Methodic // TODO нужна ли корре�
     public override double MethodicId => 3.8;
     public override string MethodicName => "Проведение сравнительных расчётов посадки и остойчивости";
 
-    public override double CalcLabor()
+    protected override double CalcLabor()
     {
         return N_ср * _q_ср;
     }

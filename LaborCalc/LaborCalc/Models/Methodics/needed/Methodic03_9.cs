@@ -5,7 +5,7 @@ public partial class Methodic03_9 : Methodic // TODO нужна ли корре�
     public override double MethodicId => 3.9;
     public override string MethodicName => "Отладка информационно-технического сопряжения СПО с внешними источниками информации";
 
-    public override double CalcLabor()
+    protected override double CalcLabor()
     {
         return K * T;
     }
@@ -50,7 +50,7 @@ public partial class Methodic03_9 : Methodic // TODO нужна ли корре�
     public override double MethodicId => 3.9;
     public override string MethodicName => "Отладка информационно-технического сопряжения СПО с внешними источниками информации";
 
-    public override double CalcLabor()
+    protected override double CalcLabor()
     {
         return _T_ос;
     }

@@ -15,10 +15,6 @@
         <helpers:MethodicToTabItemConverter x:Key="MethodicToTabItem" />
     </UserControl.Resources>
 
-    <Design.DataContext>
-        <viewModels:MainViewModel />
-    </Design.DataContext>
-
     <views:HamburgerMenu
         Name="TabControl"
         Foreground="White"
@@ -48,9 +44,5 @@
             </Flyout>
         </FlyoutBase.AttachedFlyout>--><!--
     </views:HamburgerMenu>-->
-
-
-
-
 
 </UserControl>

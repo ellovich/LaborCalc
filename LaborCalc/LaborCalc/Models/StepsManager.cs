@@ -2,65 +2,55 @@
 
 public partial class StepsManager : ViewModelBase
 {
-    [ObservableProperty, NotifyPropertyChangedFor(nameof(FullLabor))] 
-        TrulyObservableCollection<Methodic> doneSteps = new();
+    [ObservableProperty, NotifyPropertyChangedFor(nameof(FullLabor))] TrulyObservableCollection<Step> doneSteps;
 
     public StepsManager()
     {
-        //    DoneSteps.CollectionChanged += People_CollectionChanged;
+        DoneSteps = new()
+            {
+            new Step("Разработка СПО СИП БЖ", new List<Methodic>() {
+                new Methodic01() { Name = "Постановка задач на стадии \"Рабочий проект\"" }
+            }),
+
+            //new Step("Формирование ИМ данных СПО СИП БЖ", new List<Methodic>() {
+            //    new Methodic03_2() { Name = "Формирование ИМ данных СПО СИП БЖ" },
+            //}),
+            //new Step("Разработка СПО СИП БЖ", new List<Methodic>() {
+            //    new Methodic01() { Name = "Постановка задач на стадии \"Рабочий проект\"" },
+            //    new Methodic01() { Name = "Разработка ПО стадии на \"Рабочий проект\"" },
+            //    new Methodic04_6() { Name = "Разработка 3D-модели" },
+            //    new Methodic16() { Name = "Создание компакт-диска с ПО"}
+            //}),
+            //new Step("Разработка программной и эксплуатационной документации", new List<Methodic>() {
+            //    new Methodic02() { Name = "Разработка документации" },
+            //    new Methodic16() { Name = "Создание компакт-диска с документацией"}
+            //}),
+            //new Step("Разработка протоколов сопряжения", new List<Methodic>() {
+            //    new Methodic03_6() { Name = "Разработка протоколов сопряжения" },
+            //}),
+            //new Step("Корректировка ИМ по результатам кренования и проливки цистерн", new List<Methodic>() {
+            //    new Methodic03_7() {  },
+            //    new Methodic16() { Name = "Создание компакт-диска с откорректированным ПО"}
+            //}),
+            //new Step("Приёмо-сдаточные испытания СПО СИП БЖ на судне", new List<Methodic>() {
+            //    new Methodic12() {  }
+            //}),
+            //new Step("Руководство проектом", new List<Methodic>() {
+            //    new Methodic07() {  },
+            //})
+        };
     }
+
+    [JsonConstructor]
+    public StepsManager(int a = 0) { }
 
     public double FullLabor => Math.Round(DoneSteps.Sum(st => st.Labor), 2);
 
-    //private void People_CollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
-    //{
-    //    //Debug.WriteLine("-------------------");
-    //    //Debug.WriteLine(FullLabor);
 
-    //    //foreach (var item in DoneSteps)
-    //    //{
-    //    //    Debug.WriteLine(item);
-    //    //}
-    //}
-
-    //[RelayCommand]
-    //public void AddNewMethodic(int id, string name)
-    //{
-    //    var methodic = Methodic.Create(id, name);
-    //    Instance.DoneSteps.Add(methodic);
-
-    //    return methodic;
-    //}
-
-
-    public static StepsManager CreateTemplate()
+    [RelayCommand]
+    public void AddNewStep()
     {
-        return new StepsManager()
-        {
-            DoneSteps = new()
-            {
-                new Methodic03_2() { Name = "Формирование ИМ СПО СИП БЖ" },
-                new Methodic01() { Name = "Разработка СПО СИП БЖ" },
-                new Methodic04_6() { Name = "Разработка 3D-модели" },
-                new Methodic06() { Name = "Формирование электронной библиотеки" },
-                new Methodic03_6() { Name = "Разработка протокола сопряжения с внешними  системами" },
-                new Methodic02(),
-                new Methodic14(),
-                new Methodic03_7() { Name = "Корректировка ИМ СПО по результатам кренования и тарировки" },
-                new Methodic11() { Name = "Обучение порядку использования СПО" },
-                new Methodic07(),
-                // new Methodic13(),
-                new Methodic03_8(),
-                new Methodic03_9() { Name = "Отладка инф.-тех. сопряжения СПО с внешними ист. инф-ии" },
-
-                ////не нужны
-                new Methodic16(),
-                new Methodic09(),
-                new Methodic12(),
-                new Methodic17(),
-                new Methodic18(),
-            }
-        };
+        DoneSteps.Add(new Step("Руководство проектом", new List<Methodic>() { new Methodic07() }));
     }
 
     public static List<(double, string)> s_MethodicsTemplates { get; } = new List<(double, string)>()
